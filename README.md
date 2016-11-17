@@ -7,14 +7,14 @@ __Team members:__
 - _member 1_
 - _..._
 
-# Intro #
+## Intro ##
 You've conquered static sites, server-side programming, and client-side
 programming. Now the only thing standing between you and total web domination
 is _mobile_, but not for long!
 
 Your task now is to create an Android app using _react-native_.
 
-# Requirements #
+## Requirements ##
 You must create a mobile app. What it does exactly is up to you. It must meet
 these requirements:
 
@@ -28,7 +28,7 @@ these requirements:
   user's experience of the app. As an example, giving a user a stream of
   pictures submitted by other users would satisfy this requirement.
 
-# Project proposals #
+## Project proposals ##
 Since you are being given a lot of freedom in what your mobile app does we want
 to give you a chance to normalize your expectations with your peers. On pitch
 day we expect you to have a 2 minute presentation of your idea ready to
@@ -38,6 +38,12 @@ you believe can effectively convey your idea.
 
 Pitch day will still run in much the same way as before. Expect to give your
 presentation a couple of times to groups of five to ten people.
+
+## A note on reusing code ##
+You are free to reuse any code from Module 2 or Module 4 if you desire to.
+However, __this will reduce our evaluation of the technical difficulty of your
+project__ so you will need to attempt something more technically challenging
+overall to achieve the same grade.
 
 ## Submission ##
 - Your code should be pushed up to your repo on github
