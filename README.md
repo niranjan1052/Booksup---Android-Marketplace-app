@@ -40,8 +40,8 @@ Pitch day will still run in much the same way as before. Expect to give your
 presentation a couple of times to groups of five to ten people.
 
 ## A note on reusing code ##
-You are free to reuse any code from Module 2 or Module 4 if you desire to.
-However, __this will reduce our evaluation of the technical difficulty of your
+You are free to reuse any code from module 2 or module 4 if you desire to.
+However, __this will reduce our evaluation of the technical ambition of your
 project__ so you will need to attempt something more technically challenging
 overall to achieve the same grade.
 
