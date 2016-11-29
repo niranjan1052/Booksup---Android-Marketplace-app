@@ -9,8 +9,9 @@ var bodyparser = require('body-parser');
 app.set('view engine', 'ejs');
 var serv = require('http').Server(app);
 var db = mongojs('mongodb://librarian:timepass@ds113628.mlab.com:13628/webcrowsbooks', ['users']);
+
 app.get('/',function(req, res) {
-    res.sendFile(__dirname + '/client/login.html');
+    res.sendFile(__dirname + './login.html');
 });
 app.get('/about',function(req, res) {
     res.sendFile(__dirname + '/client/about.html');
