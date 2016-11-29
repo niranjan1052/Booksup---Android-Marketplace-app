@@ -11,7 +11,7 @@ var serv = require('http').Server(app);
 var db = mongojs('mongodb://librarian:timepass@ds113628.mlab.com:13628/webcrowsbooks', ['users']);
 
 app.get('/',function(req, res) {
-    res.sendFile(__dirname + './login.html');
+    res.sendFile('./login.html');
 });
 app.get('/about',function(req, res) {
     res.sendFile(__dirname + '/client/about.html');
