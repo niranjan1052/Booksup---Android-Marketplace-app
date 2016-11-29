@@ -11,7 +11,7 @@ var serv = require('http').Server(app);
 var db = mongojs('mongodb://librarian:timepass@ds113628.mlab.com:13628/webcrowsbooks', ['users']);
 
 app.get('/',function(req, res) {
-    res.sendFile('./login.html');
+    res.sendFile(__dirname + '/login.html');
 });
 app.get('/about',function(req, res) {
     res.sendFile(__dirname + '/client/about.html');
@@ -158,7 +158,7 @@ app.get('/statistics', function(req, res){
 
 app.use('/client',express.static(__dirname + '/client'));
 
-var portX = process.env.PORT || 2000;
+var portX = process.env.PORT || 2001;
 serv.listen(portX);
 
 var io = require('socket.io')(serv,{});
