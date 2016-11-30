@@ -149,6 +149,7 @@ app.post('/addnewbook',function(req,res){
   var oldPostId = db.books.find().sort({postId:-1}).limit(1).toArray(function(err, oldcounter) {
       var PostId = oldcounter[0].postId + 1;
       db.books.insert({
+          postId: PostId,
         title: Title,
         author: Author,
         askingPrice: AskingPrice,
@@ -157,10 +158,8 @@ app.post('/addnewbook',function(req,res){
         publishedDate :PublishedDate,
         isbn :Isbn,
         description: Description,
-        imageLinks: ImageLinks,
-        retailPrice: RetailPrice,
-        buyLink: BuyLink,
-        postId: PostId
+        imageLinks: ImageLinks
+
     },function(err,numInserted)
       {
         if(err){
