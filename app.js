@@ -161,8 +161,8 @@ app.post('/addnewbook',function(req,res){
   var ImageLinks = req.body.bookdetails.volumeInfo.imageLinks
   var RetailPrice = req.body.bookdetails.saleInfo.retailPrice
   var BuyLink = req.body.bookdetails.saleInfo.buyLink
- var AskingPrice : req.body.askingPrice
- var UserName = req.body.userName
+  var AskingPrice : req.body.askingPrice
+  var UserName = req.body.userName
   console.log('isbn ', isbn)
   console.log('Initialized Values')
   var InterestedUsers = [];
