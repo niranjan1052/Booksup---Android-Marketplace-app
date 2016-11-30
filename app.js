@@ -19,6 +19,9 @@ app.post('/signUpX', function(req, res, next){
   var username = req.body.userName;
   var useremail = req.body.userEmail;
   var userpass = req.body.userPass;
+  var interestedposts = [];
+  var noofinterestedposts =0;
+  var usercontact = req.body.contact;
 
   db.users.find({userName: username}).toArray(function(err, result) {
    if(result.length)
@@ -28,7 +31,15 @@ app.post('/signUpX', function(req, res, next){
     }
     else
     {
-      db.users.insert({userName: username, userEmail: useremail, userPass: userpass}, function(err, noOfInsertedDocs){
+      db.users.insert({
+        userName: username,
+        userEmail: useremail,
+        userPass: userpass,
+        userContact: usercontact,
+        interestedPosts: interestedposts,
+        noOfInterestedPosts : noofinterestedposts
+
+      }, function(err, noOfInsertedDocs){
         if (err)
         {
           res.send({flag: 0});
