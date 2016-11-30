@@ -31,7 +31,6 @@ export default class DrawerWithButton extends Component {
             title="menu"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
-            width=50
             />
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
