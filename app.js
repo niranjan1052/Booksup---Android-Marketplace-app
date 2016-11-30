@@ -15,13 +15,13 @@ app.get('/',function(req, res) {
 });
 
 app.post('/signUpX', function(req, res, next){
-  console.log("body!  ",req.body);
+  console.log("body!  ",);
   var username = req.body.userName;
   var useremail = req.body.userEmail;
   var userpass = req.body.userPass;
   var interestedposts = [];
   var noofinterestedposts =0;
-  var usercontact = req.body.contact;
+  var usercontact = req.body.userContact;
 
   db.users.find({userName: username}).toArray(function(err, result) {
    if(result.length)
