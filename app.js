@@ -87,9 +87,9 @@ app.get('/explore', function(req, res, next) {
     });
 });
 
-app.get('/bookdetails/:postID',function(req,res){
-    var postID = req.params.postID;
-    db.books.find({postID : postID }).toArray(function(err,result){
+app.get('/bookdetails/:postId',function(req,res){
+    var postId = req.params.postId;
+    db.books.find({postId : postId }).toArray(function(err,result){
      if(err){
        res.send({flag:0});
      }
