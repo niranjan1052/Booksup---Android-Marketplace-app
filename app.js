@@ -51,10 +51,10 @@ app.post('/signUpX', function(req, res, next){
   });
 });
 
-app.get('/loginX/:userName/:userPass', function(req, res, next){
-  var userName = req.params.userId;
-  var userpass = req.params.userPass;
-  db.users.find({userName: userName, userPass: userpass}).toArray(function(err, result) {
+app.get('/loginX', function(req, res, next){
+  var userName = req.params.userName;
+  var userPass = req.params.userPass;
+  db.users.find({userName: userName, userPass: userPass}).toArray(function(err, result) {
     if(err)
     {
       var foo = {flag: 0};
