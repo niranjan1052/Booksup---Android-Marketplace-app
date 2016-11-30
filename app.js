@@ -52,8 +52,9 @@ app.post('/signUpX', function(req, res, next){
 });
 
 app.post('/loginX', function(req, res, next){
-  var userName = req.params.userName;
-  var userPass = req.params.userPass;
+  var userName = req.body.userName;
+  var userPass = req.body.userPass;
+  console.log("login received ",req.body);
   db.users.find({userName: userName, userPass: userPass}).toArray(function(err, result) {
     if(err)
     {
