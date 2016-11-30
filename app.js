@@ -34,23 +34,38 @@ app.get('/error',function(req, res) {
 
 app.post('/signUpX', function(req, res, next){
   console.log("body!  ",req.body);
+
+
+
   var username = req.body.userName;
   var useremail = req.body.userEmail;
   var userpass = req.body.userPass;
 
-  db.users.insert({userName: username, userEmail: useremail, userPass: userpass}, function(err, noOfInsertedDocs){
-    if (err)
+  db.users.find({userName: userName}).toArray(function(err, result) {
+   if(result.length)
     {
-      res.send({flag: 0});
+      var foo = {flag: 2};
+      res.send(foo);
     }
     else
     {
-      var foo = {flag: 1};
-      res.send(foo);
+      db.users.insert({userName: username, userEmail: useremail, userPass: userpass}, function(err, noOfInsertedDocs){
+        if (err)
+        {
+          res.send({flag: 0});
+        }
+        else
+        {
+          var foo = {flag: 1};
+          res.send(foo);
+        }
+      });
     }
   });
-});
 
+
+});
+/
 app.post('/loginX', function(req, res, next){
   var userName = req.body.userName;
   var userPass = req.body.userPass;
