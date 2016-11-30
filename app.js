@@ -127,15 +127,15 @@ app.post('/showinterest' , function(req,res){
   console.log('user ',userName,'shown interest in ',postId,' post');
   db.books.update({postId: postId}, {$push: {interestedUsers: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
 if(err){
-  res.send({flag:0});
+  res.send({flag:1});
 }
 else if( noUpdated){
   db.users.update({userName:userName},{$push: {interestedPosts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
   if(err){
-    res.send({flag:0});
+    res.send({flag:2});
   }
   else if(noofUpdated){
-    var foo = {flag:1};
+    var foo = {flag:3};
     res.send(foo);
   }
 
