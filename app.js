@@ -87,7 +87,7 @@ app.post('/loginX', function(req, res, next){
 });
 
 app.get('/explore', function(req, res, next) {
-  db.books.find({}).sort({postID}).toArray(function(err, result) {
+  db.books.find({}).sort({ title: -1}).toArray(function(err, result) {
       if(err)
       {
         res.send({flag: 0});
