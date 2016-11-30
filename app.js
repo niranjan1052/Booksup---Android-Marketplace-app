@@ -106,7 +106,7 @@ app.get('/bookdetails/:postId',function(req,res){
 app.post('/showinterest' , function(req,res){
   var postId = parseInt(req.body.postId);
   var userName = req.body.userName;
-  console.log('user ',userName,'shown interest in ',postId,' post');
+  console.log('user ',req.body,' shown interest in ',postId,' post');
   db.books.update({postId: postId}, {$push: {interestedUsers: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
 if(err){
   res.send({flag:0});
