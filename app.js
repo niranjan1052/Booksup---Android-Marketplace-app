@@ -15,7 +15,7 @@ app.get('/',function(req, res) {
 });
 
 app.post('/signUpX', function(req, res, next){
-  console.log("body!  ",);
+  console.log("body!  ",req.body);
   var username = req.body.userName;
   var useremail = req.body.userEmail;
   var userpass = req.body.userPass;
