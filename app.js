@@ -135,7 +135,7 @@ else if( noUpdated){
     res.send({flag:2});
   }
   else if(noofUpdated){
-    var foo = {flag:3};
+    var foo = {flag:'3'};
     res.send(foo);
   }
 
