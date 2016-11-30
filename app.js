@@ -106,6 +106,22 @@ app.get('/explore', function(req, res, next) {
 });
 
 
+app.get('/bookdetails/:postID',function(req,res){
+    var postID = req.params.postID;
+    db.books.find({postID : postID }).toArray(function(err,result){
+     if(err){
+       res.send({flag:0});
+     }
+     else if ( result.length){
+       var foo = { bookdetails : result };
+       res.send(foo);
+     }
+
+    });
+
+});
+
+
 
 app.use('/client',express.static(__dirname + '/client'));
 
