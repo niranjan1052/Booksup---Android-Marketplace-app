@@ -141,7 +141,7 @@ app.post('/addnewbook',function(req,res){
   var BuyLink = req.body.bookdetails.saleInfo.buyLink;
   var AskingPrice = req.body.askingPrice;
   var UserName = req.body.userName;
-  console.log('isbn ', isbn);
+  console.log('isbn ', Isbn);
   console.log('Initialized Values');
   var InterestedUsers = [];
   var NoOfInterestedUsers = 0;
