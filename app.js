@@ -105,7 +105,6 @@ app.get('/explore', function(req, res, next) {
     });
 });
 
-
 app.get('/bookdetails/:postID',function(req,res){
     var postID = req.params.postID;
     db.books.find({postID : postID }).toArray(function(err,result){
@@ -119,6 +118,53 @@ app.get('/bookdetails/:postID',function(req,res){
 
     });
 
+});
+
+app.post('/loginX', function(req, res, next){
+  var userName = req.body.userName;
+  var userPass = req.body.userPass;
+  console.log("login received ",req.body);
+  db.users.find({userName: userName, userPass: userPass}).toArray(function(err, result) {
+    if(err)
+    {
+      var foo = {flag: 0};
+      res.send(foo);
+    }
+    else if(result.length)
+    {
+      var foo = {flag: 1};
+      res.send(foo);
+    }
+    else
+    {
+        var foo = {flag: 0};
+        res.send(foo);
+    }
+  });
+});
+
+app.post('/showinterest' , function(req,res){
+  var postId = req.body.postID;
+  var userName = req.body.userName;
+  console.log('user ',userName,'shown interest in ',postId,' post');
+  db.books.update({postId: postId}, {$push: {interested_Users: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
+if(err){
+  res.send.({flag:0});
+}
+else if( noUpdated){
+  db.users.update({userName:userName},{$push: {interested_Posts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
+  if(err){
+    res.send.({flag:0});
+  }
+  else if( noofUpdated){
+    var foo = {flag:1};
+    res.send(foo);
+  }
+
+});
+}
+
+  });
 });
 
 
