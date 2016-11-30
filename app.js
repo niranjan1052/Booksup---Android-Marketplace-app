@@ -147,7 +147,60 @@ else if( noUpdated){
 
 
 
+
+
+
+app.post('/addnewbook',function(req,res){
+  console.log('Started API')
+  var Title = req.body.bookdetails.volumeInfo.title
+  var Author = req.body.bookdetails.volumeInfo.authors
+  var Publisher = req.body.bookdetails.volumeInfo.publisher
+  var PublishedDate = req.body.bookdetails.volumeInfo.publishedDate
+  var Isbn = req.body.bookdetails.volumeInfo.industryIdentifiers[0].identifier
+  var Description = req.body.bookdetails.volumeInfo.description
+  var ImageLinks = req.body.bookdetails.volumeInfo.imageLinks
+  var RetailPrice = req.body.bookdetails.saleInfo.retailPrice
+  var BuyLink = req.body.bookdetails.saleInfo.buyLink
+
+  console.log('isbn ', isbn)
+  console.log('Initialized Values')
+  var InterestedUsers = [];
+  var NoOfInterestedUsers = 0;
+
+  var oldPostId = db.books.find().sort({postId:-1}).limit(1).toArray(function(err, oldcounter) {
+      var PostId = oldcounter[0].postId + 1;
+      db.books.insert({
+        title:Title ,
+        author:Author ,
+        askingPrice:"200",
+        userName:"john",
+        publisher : Publisher,
+        publishedDate : PublishedDate,
+        isbn : Isbn,
+        description: Description,
+        imageLinks: ImageLinks,
+        retailPrice : RetailPrice,
+        buyLink : BuyLink,
+        postId : PostId
+    },function(err,numInserted)
+      {
+        if(err){
+          res.send(JSON.stringify({flag: 0}))
+        }
+        else{
+          console.log('Inserted in db')
+          res.send(JSON.stringify({flag: 1}))
+        }
+      });
+
+    });
+
+})
+
+
+
+
 app.use('/client',express.static(__dirname + '/client'));
 
-var portX = process.env.PORT || 2001;
+var portX = process.env.PORT || 2000;
 serv.listen(portX);
