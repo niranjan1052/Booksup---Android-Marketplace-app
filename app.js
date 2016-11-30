@@ -146,10 +146,6 @@ else if( noUpdated){
 });
 
 
-
-
-
-
 app.post('/addnewbook',function(req,res){
   console.log('Started API')
   var Title = req.body.bookdetails.volumeInfo.title
