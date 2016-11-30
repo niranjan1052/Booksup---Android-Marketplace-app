@@ -5,7 +5,7 @@ var mongojs = require("mongojs");
 var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
-//app.use(bodyparser());
+app.use(bodyparser());
 app.set('view engine', 'ejs');
 var serv = require('http').Server(app);
 var db = mongojs('mongodb://librarian:timepass@ds113628.mlab.com:13628/webcrowsbooks', ['users']);
@@ -33,7 +33,7 @@ app.get('/error',function(req, res) {
 });
 
 app.post('/signUpX', function(req, res, next){
-
+  console.log("body!  ",req.body);
   var username = req.body.userName;
   var useremail = req.body.userEmail;
   var userpass = req.body.userPass;
