@@ -147,12 +147,12 @@ app.post('/showinterest' , function(req,res){
   var postId = req.body.postID;
   var userName = req.body.userName;
   console.log('user ',userName,'shown interest in ',postId,' post');
-  db.books.update({postId: postId}, {$push: {interested_Users: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
+  db.books.update({postId: postId}, {$push: {interestedUsers: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
 if(err){
   res.send.({flag:0});
 }
 else if( noUpdated){
-  db.users.update({userName:userName},{$push: {interested_Posts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
+  db.users.update({userName:userName},{$push: {interestedPosts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
   if(err){
     res.send.({flag:0});
   }
