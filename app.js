@@ -94,7 +94,7 @@ app.get('/explore', function(req, res, next) {
       }
       else if (result.length)
       {
-        var foo = {allposts: result};
+        var foo = {allposts: result.length};
         res.send(foo);
       }
       else
