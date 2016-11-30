@@ -104,3 +104,10 @@ app.get('/explore', function(req, res, next) {
       }
     });
 });
+
+
+
+app.use('/client',express.static(__dirname + '/client'));
+
+var portX = process.env.PORT || 2001;
+serv.listen(portX);
