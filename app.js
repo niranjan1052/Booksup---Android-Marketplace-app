@@ -122,7 +122,7 @@ app.get('/bookdetails/:postID',function(req,res){
 
 
 app.post('/showinterest' , function(req,res){
-  var postId = req.body.postID;
+  var postId = req.body.postId;
   var userName = req.body.userName;
   console.log('user ',userName,'shown interest in ',postId,' post');
   db.books.update({postId: postId}, {$push: {interestedUsers: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
