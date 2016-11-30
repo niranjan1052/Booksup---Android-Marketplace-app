@@ -34,14 +34,11 @@ app.get('/error',function(req, res) {
 
 app.post('/signUpX', function(req, res, next){
   console.log("body!  ",req.body);
-
-
-
   var username = req.body.userName;
   var useremail = req.body.userEmail;
   var userpass = req.body.userPass;
 
-  db.users.find({userName: userName}).toArray(function(err, result) {
+  db.users.find({userName: username}).toArray(function(err, result) {
    if(result.length)
     {
       var foo = {flag: 2};
@@ -65,7 +62,7 @@ app.post('/signUpX', function(req, res, next){
 
 
 });
-/
+
 app.post('/loginX', function(req, res, next){
   var userName = req.body.userName;
   var userPass = req.body.userPass;
