@@ -88,7 +88,7 @@ app.get('/explore', function(req, res, next) {
 });
 
 app.get('/bookdetails/:postId',function(req,res){
-    var postId = req.params.postId;
+    var postId = parseInt(req.params.postId);
     db.books.find({postId : postId }).toArray(function(err,result){
      if(err){
        res.send({flag:0});
@@ -104,7 +104,7 @@ app.get('/bookdetails/:postId',function(req,res){
 
 
 app.post('/showinterest' , function(req,res){
-  var postId = req.body.postId;
+  var postId = parseInt(req.body.postId);
   var userName = req.body.userName;
   console.log('user ',userName,'shown interest in ',postId,' post');
   db.books.update({postId: postId}, {$push: {interestedUsers: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
@@ -158,8 +158,9 @@ app.post('/addnewbook',function(req,res){
         publishedDate :PublishedDate,
         isbn :Isbn,
         description: Description,
-        imageLinks: ImageLinks
-
+        imageLinks: ImageLinks,
+        interestedUsers:  InterestedUsers,
+        noOfInterestedUsers : NoOfInterestedUsers
     },function(err,numInserted)
       {
         if(err){
