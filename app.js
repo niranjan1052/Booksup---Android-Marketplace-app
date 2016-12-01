@@ -203,6 +203,24 @@ else if( noUpdated){
   });
 });
 
+app.post('/deletepost' , function(req,res){
+  var postId = parseInt(req.body.postId);
+  console.log('to delete ',req.body,' and  ',postId,' post');
+  db.books.remove({postId: postid}, function(err, noOfRemovedDocs){
+    if (err)
+    {
+      res.send({flag: 0});
+    }
+    else
+    {
+      console.log('deleted from db');
+      var foo = {flag: 1};
+      res.send(foo);
+    }
+  });
+});
+
+
 app.post('/addnewbook',function(req,res){
   console.log('Started API');
   var Title = req.body.bookdetails.volumeInfo.title;
