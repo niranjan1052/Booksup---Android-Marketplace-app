@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  DrawerLayoutAndroid,
   Text,
   Image,
   View,
@@ -37,6 +38,7 @@ class Home extends Component {
     this.state = {
       books: []
     }
+    this.onPressButton = this.onPressButton.bind(this);
   }
 
   componentDidMount() {
@@ -77,32 +79,47 @@ class Home extends Component {
       )
   }
 
+  onPressButton() {
+    this.refs['DRAWER_REF'].openDrawer();
+  }
+
   render() {
     console.log('Rendering')
+    var navigationView = (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am in the Drawer!</Text>
+      </View>
+    );
     return (
-      <Container>
-        <Header searchBar rounded>
-            <InputGroup>
-              <Button transparent>
-                <Icon name="ios-menu" />
-              </Button>
-              <Icon name="ios-search" />
-              <Icon placeholder="Search" />
-            </InputGroup>
-          <Button transparent>
-            Search
-          </Button>
-        </Header>
+      <DrawerLayoutAndroid
+        drawerWidth={300}
+        drawerPosition={DrawerLayoutAndroid.positions.Left}
+        renderNavigationView={() => navigationView}
+        ref={'DRAWER_REF'}>
+        <Container>
+          <Header searchBar rounded>
+              <InputGroup>
+                <Button transparent onPress={this.onPressButton}>
+                  <Icon name="ios-menu" />
+                </Button>
+                <Icon name="ios-search" />
+                <Icon placeholder="Search" />
+              </InputGroup>
+            <Button transparent>
+              Search
+            </Button>
+          </Header>
 
-        <Content>
-          <List>
+          <Content>
+            <List>
 
-            {this.state.books.map((item) =>
-            this.eachBook(item, this)
-          )}
-          </List>
-        </Content>
-      </Container>
+              {this.state.books.map((item) =>
+              this.eachBook(item, this)
+            )}
+            </List>
+          </Content>
+        </Container>
+      </DrawerLayoutAndroid>
     );
   }
 }

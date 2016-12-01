@@ -22,10 +22,10 @@ export default class Entity extends Component {
 			        	<Icon name="circle" style={styles.closeEntity} />
 			        </TouchableOpacity>
 			        <View style={styles.headerBlock}>
-			          <Text style={styles.header}>{_.capitalize(this.props.element.name)}</Text>
+			          <Text style={styles.header}>{_.capitalize(this.props.element.title)}</Text>
 			        </View>
 			          <FitImage
-			          	source={{uri: this.props.element.url}}
+			          	source={{uri: this.props.element.imageLinks.thumbnail}}
 			          	style={styles.singlePic}
 			          />
 			    </ViewContainer>
