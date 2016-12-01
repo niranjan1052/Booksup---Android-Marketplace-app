@@ -56,6 +56,7 @@ class Home extends Component {
   }
 
   _navigateToThisEvent(book) {
+    console.log(this.props.name)
     this.props.navigator.push({
       rt: "Entity",
       element: book,
@@ -63,9 +64,10 @@ class Home extends Component {
     })
   }
 
-  eachBook (book) {
+  eachBook (book, self) {
+    //this.navigateToThisEvent.bind(this)
     return (<ListItem>
-          <TouchableOpacity onPress={(event) => this._navigateToThisEvent(book)}>
+          <TouchableOpacity onPress={()=>self._navigateToThisEvent(book)}>
             <Thumbnail square size={100} source={{uri: book.imageLinks.thumbnail}} />
           </TouchableOpacity>
             <Text> {book.title}</Text>
@@ -76,6 +78,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log('Rendering')
     return (
       <Container>
         <Header searchBar rounded>
@@ -93,7 +96,10 @@ class Home extends Component {
 
         <Content>
           <List>
-            {this.state.books.map(this.eachBook)}
+
+            {this.state.books.map((item) =>
+            this.eachBook(item, this)
+          )}
           </List>
         </Content>
       </Container>

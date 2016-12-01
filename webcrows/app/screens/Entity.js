@@ -24,7 +24,7 @@ export default class Entity extends Component {
 			        <View style={styles.headerBlock}>
 			          <Text style={styles.header}>{_.capitalize(this.props.element.name)}</Text>
 			        </View>
-			          <FitImage 
+			          <FitImage
 			          	source={{uri: this.props.element.url}}
 			          	style={styles.singlePic}
 			          />
