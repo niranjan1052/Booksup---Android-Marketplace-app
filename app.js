@@ -98,6 +98,31 @@ app.get('/explore', function(req, res, next) {
     });
 });
 
+
+app.get('/userposts/:userName', function(req, res, next) {
+ var UserName = req.params.userName;
+ db.books.find({userName: UserId}).sort({noOfInterestedUsers: -1}).toArray(function(err, result) {
+   if(err)
+   {
+     console.log('error')
+     res.send({flag: 0});
+   }
+   else if(result.length)
+   {
+     console.log('Found some results')
+     var foo = {userPosts: result}
+     res.send(foo);
+   }
+   else
+   {
+       console.log('0 results')
+       var foo = {userPosts: result}
+       res.send(foo);
+   }
+ });
+});
+
+
 app.get('/bookdetails/:postId',function(req,res){
     var postId = parseInt(req.params.postId);
     db.books.find({postId : postId }).toArray(function(err,result){
