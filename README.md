@@ -1,5 +1,8 @@
 # Module4-group-project #
 
+API documentation has been mailed to all project members. Please read the documentation to use the APIs.
+Call Ambuj/Niranjan if any API does not work as expected
+
 __Submitted by:__ _Team name_
 
 __Team members:__
