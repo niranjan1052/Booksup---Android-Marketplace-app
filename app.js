@@ -121,10 +121,9 @@ app.get('/prospectiveBuyers/:postId', function(req, res, next) {
  });
 });
 
-/*
 
 app.get('/myinterests/:userName', function(req,res){
-  var username = req.param.userName;
+  var username = req.params.userName;
  db.books.find({ interestedUsers: username}   ).toArray(function(err,result){
  if(err){
    res.send({flag:0});
@@ -144,8 +143,8 @@ app.get('/myinterests/:userName', function(req,res){
  });
 });
 
-*/
 
+/*
 app.get('/myinterests/:userName', function(req, res, next) {
  var UserName = req.params.userName;
  db.books.find({interestedUsers: UserName}).toArray(function(err, result) {
@@ -169,7 +168,7 @@ app.get('/myinterests/:userName', function(req, res, next) {
  });
 });
 
-
+*/
 app.get('/userposts/:userName', function(req, res, next) {
  var UserName = req.params.userName;
  db.books.find({userName: UserName}).sort({noOfInterestedUsers: -1}).toArray(function(err, result) {
