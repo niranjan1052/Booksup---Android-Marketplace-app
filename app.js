@@ -136,7 +136,7 @@ app.get('/myinterests/:userName', function(req,res){
       res.send(foo);
  }
  else {
-   res.send({flag:3});
+   res.send({flag:result});
  }
 
  });
