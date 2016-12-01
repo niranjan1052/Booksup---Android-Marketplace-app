@@ -206,7 +206,7 @@ else if( noUpdated){
 app.post('/deletepost' , function(req,res){
   var postId = parseInt(req.body.postId);
   console.log('to delete ',req.body,' and  ',postId,' post');
-  db.books.remove({postId: postid}, function(err, noOfRemovedDocs){
+  db.books.remove({postId: postId}, function(err, noOfRemovedDocs){
     if (err)
     {
       res.send({flag: 0});
