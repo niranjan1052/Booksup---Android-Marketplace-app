@@ -144,31 +144,6 @@ app.get('/myinterests/:userName', function(req,res){
 });
 
 
-/*
-app.get('/myinterests/:userName', function(req, res, next) {
- var UserName = req.params.userName;
- db.books.find({interestedUsers: UserName}).toArray(function(err, result) {
-   if(err)
-   {
-     console.log('error')
-     res.send({flag: 0});
-   }
-   else if(result.length)
-   {
-     console.log('Found some results')
-     var foo = {users: result}
-     res.send(foo);
-   }
-   else
-   {
-       console.log('0 results')
-       var foo = {users: result}
-       res.send(foo);
-   }
- });
-});
-
-*/
 app.get('/userposts/:userName', function(req, res, next) {
  var UserName = req.params.userName;
  db.books.find({userName: UserName}).sort({noOfInterestedUsers: -1}).toArray(function(err, result) {
