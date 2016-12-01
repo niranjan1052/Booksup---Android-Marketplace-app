@@ -123,13 +123,13 @@ app.get('/prospectiveBuyers/:postId', function(req, res, next) {
 
 app.get('/myinterests/:userName', function(req,res){
   var username = req.param.userName;
- db.books.find({ interestedUsers: { $elemMatch: { username} } } ).toArray(function(err,result){
+ db.books.find({ interestedUsers:  username}   ).toArray(function(err,result){
  if(err){
    res.send({flag:0});
  }
  else if(result.length){
    var foo = {
-     flag: '1',
+     flag: 1,
      interestedbooks: result
 
    }
