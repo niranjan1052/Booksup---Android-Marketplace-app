@@ -6,7 +6,8 @@ import {
   TextInput,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import ApiHandler from '../services/ApiHandler'
@@ -20,6 +21,8 @@ export default class Login extends Component {
     this.state = { isSignup: false };
 
     this.email = null;
+    this.contact = null;
+    this.name = null;
     this.password = null;
     this.passwordConfirmation = null;
     this.onLoadUserCompleted = this.onLoadUserCompleted.bind(this)
@@ -28,8 +31,7 @@ export default class Login extends Component {
 
   componentDidMount() {
     ApiHandler.loadUser()
-      .then( (user)=> { 
-        console.log('inside then at componentDidMount')
+      .then( (user)=> {
         onLoadUserCompleted(user) 
       } )
       .catch(( )=>{});
@@ -89,19 +91,54 @@ export default class Login extends Component {
       </View>
     ) : null;
 
-    return (
-      <View>
-        <View style={styles.inputContainer}>
+    let contactDetails = this.state.isSignup ? (
+        <View>
+         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Email"
             placeholderTextColor="rgba(255,255,255,0.75)"
             keyboardType="email-address"
             selectionColor="white"
             style={styles.input}
-            autoFocus={true}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={(email) => this.email = email}
+            returnKeyType="next"
+            onSubmitEditing={() => this._contactRef.focus()}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            ref={(ref) => this._contactRef = ref}
+            placeholder="Contact number"
+            placeholderTextColor="rgba(255,255,255,0.75)"
+            keyboardType="phone-pad"
+            selectionColor="white"
+            style={styles.input}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={(contact) => this.contact = contact}
+            returnKeyType="next"
+            onSubmitEditing={() => this._nameRef.focus()}
+          />
+        </View>
+      </View>
+    ) : null;
+      
+    return (
+      <View>
+        {contactDetails}
+        <View style={styles.inputContainer}>
+          <TextInput
+            ref={(ref) => this._nameRef = ref}
+            placeholder="Username"
+            placeholderTextColor="rgba(255,255,255,0.75)"
+            keyboardType="default"
+            selectionColor="white"
+            style={styles.input}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={(name) => this.name = name}
             returnKeyType="next"
             onSubmitEditing={() => this._passwordRef.focus()}
           />
@@ -137,18 +174,20 @@ export default class Login extends Component {
 
   submitForm() {
     if (this.state.isSignup) {
-      if (!this.email || !this.password || !this.passwordConfirmation)
-        return console.error("Missing input fields");
+      if (!this.name || !this.contact || !this.email || !this.password || !this.passwordConfirmation)
+        Alert.alert("Missing input fields");
       if (this.password !== this.passwordConfirmation)
-        return console.error("Passwords don't match");
+        Alert.alert("Passwords don't match");
 
       ApiHandler.signup({
         email: this.email,
+        contact: this.contact,
+        name: this.name,
         password: this.password
       }, this.onLoadUserCompleted);
     } else {
       ApiHandler.login({
-        email: this.email,
+        name: this.name,
         password: this.password
       }, this.onLoadUserCompleted);
     }
@@ -160,6 +199,7 @@ export default class Login extends Component {
 
 
   onLoadUserCompleted(user) {
+    console.log('onLoadUserCompleted ' + user)
     if (user) {
       this._navigateToHome(user)
     }
