@@ -1,5 +1,3 @@
-
-
 var ejs = require('ejs');
 var mongojs = require("mongojs");
 var express = require('express');
@@ -52,8 +50,6 @@ app.post('/signUpX', function(req, res, next){
       });
     }
   });
-
-
 });
 
 app.post('/loginX', function(req, res, next){
@@ -87,12 +83,14 @@ app.get('/explore', function(req, res, next) {
       }
       else if (result.length)
       {
-        var foo = {allposts: result};
+        var foo = {allposts: result,
+        flag: 1};
         res.send(foo);
       }
       else
       {
-        var foo = {allposts: result};
+        var foo = {allposts: result,
+        flag: 0};
         res.send(foo);
       }
     });
@@ -109,18 +107,19 @@ app.get('/prospectiveBuyers/:postId', function(req, res, next) {
    else if(result.length)
    {
      console.log('Found some results')
-     var foo = {users: result}
+     var foo = {users: result,
+     flag: 1}
      res.send(foo);
    }
    else
    {
        console.log('0 results')
-       var foo = {users: result}
+       var foo = {users: result,
+       flag: 0}
        res.send(foo);
    }
  });
 });
-
 
 app.get('/myinterests/:userName', function(req,res){
   var username = req.params.userName;
@@ -137,12 +136,10 @@ app.get('/myinterests/:userName', function(req,res){
       res.send(foo);
  }
  else {
-   res.send({flag:result});
+   res.send({flag: 0});
  }
-
  });
 });
-
 
 app.get('/userposts/:userName', function(req, res, next) {
  var UserName = req.params.userName;
@@ -155,18 +152,19 @@ app.get('/userposts/:userName', function(req, res, next) {
    else if(result.length)
    {
      console.log('Found some results')
-     var foo = {userPosts: result}
+     var foo = {userPosts: result,
+     flag: 1}
      res.send(foo);
    }
    else
    {
        console.log('0 results')
-       var foo = {userPosts: result}
+       var foo = {userPosts: result,
+       flag: 0}
        res.send(foo);
    }
  });
 });
-
 
 app.get('/bookdetails/:postId',function(req,res){
     var postId = parseInt(req.params.postId);
@@ -175,14 +173,12 @@ app.get('/bookdetails/:postId',function(req,res){
        res.send({flag:0});
      }
      else if ( result.length){
-       var foo = { bookdetails : result };
+       var foo = { bookdetails : result,
+       flag: 1 };
        res.send(foo);
      }
-
     });
-
 });
-
 
 app.post('/showinterest' , function(req,res){
   var postId = parseInt(req.body.postId);
@@ -195,19 +191,17 @@ if(err){
 else if( noUpdated){
   db.users.update({userName:userName},{$push: {interestedPosts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
   if(err){
-    res.send({flag:2});
+    res.send({flag: 2});
   }
   else if(noofUpdated){
-    var foo = {flag:'3'};
+    var foo = {flag: 1};
     res.send(foo);
   }
 
 });
 }
-
   });
 });
-
 
 app.post('/addnewbook',function(req,res){
   console.log('Started API');
@@ -230,7 +224,7 @@ app.post('/addnewbook',function(req,res){
   var oldPostId = db.books.find().sort({postId:-1}).limit(1).toArray(function(err, oldcounter) {
       var PostId = oldcounter[0].postId + 1;
       db.books.insert({
-          postId: PostId,
+        postId: PostId,
         title: Title,
         author: Author,
         askingPrice: AskingPrice,
@@ -254,9 +248,6 @@ app.post('/addnewbook',function(req,res){
       });
     });
 })
-
-
-
 
 app.use('/client',express.static(__dirname + '/client'));
 
