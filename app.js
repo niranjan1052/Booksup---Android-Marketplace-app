@@ -101,7 +101,7 @@ app.get('/explore', function(req, res, next) {
 
 app.get('/userposts/:userName', function(req, res, next) {
  var UserName = req.params.userName;
- db.books.find({userName: UserId}).sort({noOfInterestedUsers: -1}).toArray(function(err, result) {
+ db.books.find({userName: UserName}).sort({noOfInterestedUsers: -1}).toArray(function(err, result) {
    if(err)
    {
      console.log('error')
