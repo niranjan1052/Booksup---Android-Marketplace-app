@@ -7,7 +7,7 @@
 import React, { Component } from 'react'
 import {
   AppRegistry,
-  StyleSheet, 
+  StyleSheet,
   Navigator,
   Text
 } from 'react-native'
@@ -32,14 +32,14 @@ export default class webcrows extends Component {
       case "Home":
         return (
             <Home {...globalNavProps}
-             name={route.name} 
+             name={route.name}
             />
           )
 
       case "Entity":
         return (
-            <Entity 
-              {...globalNavProps} 
+            <Entity
+              {...globalNavProps}
               element={route.element}
               name={route.name}
             />
@@ -50,9 +50,9 @@ export default class webcrows extends Component {
             <Text>{`a temp route..`}</Text>
           )
 
-      default: 
+      default:
         return (
-            <Home {...globalNavProps} 
+            <Home {...globalNavProps}
              name={route.name}
             />
           )
@@ -64,7 +64,7 @@ export default class webcrows extends Component {
       <Navigator
         initialRoute={{rt: "Login"}}
         ref="appNavigator"
-        style={styles.navStyles} 
+        style={styles.navStyles}
         renderScene={ this._renderScene }
         configureScene={ (route) => ({
           ...route.sceneConfig || Navigator.SceneConfigs.FloatFromRight,

@@ -13,6 +13,7 @@ import ApiHandler from '../services/ApiHandler'
 import ViewContainer from '../components/ViewContainer/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground/StatusBarBackground'
 import FitImage from 'react-native-fit-image';
+import navigationView from './Drawer'
 
 import {
   Container,
@@ -85,11 +86,6 @@ class Home extends Component {
 
   render() {
     console.log('Rendering')
-    var navigationView = (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am in the Drawer!</Text>
-      </View>
-    );
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
