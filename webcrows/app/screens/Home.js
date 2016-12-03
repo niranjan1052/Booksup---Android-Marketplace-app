@@ -69,7 +69,7 @@ class Home extends Component {
 
   eachBook (book, self) {
     //this.navigateToThisEvent.bind(this)
-    return (<ListItem>
+    return (<ListItem key={book}>
           <TouchableOpacity onPress={()=>self._navigateToThisEvent(book)}>
             <Thumbnail square size={100} source={{uri: book.imageLinks.thumbnail}} />
           </TouchableOpacity>

@@ -26,12 +26,14 @@ export default class webcrows extends Component {
     switch(route.rt) {
       case "Login":
         return (
-            <Login {...globalNavProps} />
+            <Login {...globalNavProps}
+              key = {route.rt}/>
           )
 
       case "Home":
         return (
             <Home {...globalNavProps}
+             key={route.rt}
              name={route.name}
             />
           )
@@ -40,6 +42,7 @@ export default class webcrows extends Component {
         return (
             <Entity
               {...globalNavProps}
+              key = {route.rt}
               element={route.element}
               name={route.name}
             />
@@ -53,6 +56,7 @@ export default class webcrows extends Component {
       default:
         return (
             <Home {...globalNavProps}
+             key={route.rt}
              name={route.name}
             />
           )
