@@ -84,7 +84,7 @@ export default class webcrows extends Component {
         initialRoute={{rt: "Login"}}
         ref="appNavigator"
         style={styles.navStyles}
-        renderScene={ this._renderScene }
+        renderScene={this._renderScene }
         configureScene={ (route) => ({
           ...route.sceneConfig || Navigator.SceneConfigs.FloatFromRight,
           gestures: route.gestures
