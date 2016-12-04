@@ -16,6 +16,10 @@ import Home from './app/screens/Home'
 import Entity from './app/screens/Entity'
 import Login from './app/screens/Login'
 import styles from './app/styles/appStyles'
+import ScanCamera from './app/screens/ScanCamera'
+import Details from './app/screens/Details'
+import ManualEntry from './app/screens/ManualEntry'
+
 
 
 export default class webcrows extends Component {
@@ -52,6 +56,17 @@ export default class webcrows extends Component {
         return (
             <Text>{`a temp route..`}</Text>
           )
+      case 'Details':
+        return (
+          <Details {...globalNavProps} bookdetails={route.bookdetails}/>
+        )
+      case 'ManualISBN':
+        return (<ManualEntry {...globalNavProps}/>)
+
+      case 'ScanCamera':
+        return(
+          <ScanCamera {...globalNavProps} />
+        )
 
       default:
         return (

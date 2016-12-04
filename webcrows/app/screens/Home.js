@@ -6,14 +6,13 @@ import {
   View,
   ListView,
   TouchableOpacity,
-  Navigator,
+  Navigator
 } from 'react-native';
 
 import ApiHandler from '../services/ApiHandler'
 import ViewContainer from '../components/ViewContainer/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground/StatusBarBackground'
 import FitImage from 'react-native-fit-image';
-import navigationView from './Drawer'
 
 import {
   Container,
@@ -84,8 +83,27 @@ class Home extends Component {
     this.refs['DRAWER_REF'].openDrawer();
   }
 
+  scan(){
+    console.log('Pressed')
+    this.props.navigator.push({
+      rt : "ScanCamera"
+    })
+  }
+
   render() {
     console.log('Rendering')
+    var navigationView = (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
+        <Button
+          onPress={this.scan.bind(this)}
+          title="Add a new Book"
+          color="#841584"
+          >
+          Upload new book
+          </Button>
+      </View>
+    );
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
