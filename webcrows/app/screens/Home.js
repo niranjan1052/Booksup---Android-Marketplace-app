@@ -35,10 +35,14 @@ class Home extends Component {
     super (props)
     // this._navigateToThisEvent = this._navigateToThisEvent.bind(this)
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2 })
+    this.filteredList = []
     this.state = {
-      books: []
+      books: [],
+      filterText: ''
     }
     this.onPressButton = this.onPressButton.bind(this);
+    this.setfilteredlist = this.setfilteredlist.bind(this);
+    this.searching = this.searching.bind(this)
   }
 
   componentDidMount() {
@@ -51,7 +55,7 @@ class Home extends Component {
     .then (function(json){
         if (json && json.flag==1 && json.allposts) {
           // self.setState({ crowsDS : self.state.crowsDS.cloneWithRows(json.allposts) })
-          self.setState({ books : json.allposts })
+          self.setState({ books : json.allposts, filterText: '' })
         }
       });
     });
@@ -62,13 +66,13 @@ class Home extends Component {
     this.props.navigator.push({
       rt: "Entity",
       element: book,
-      name: this.props.name,
-      sceneConfig: Navigator.SceneConfigs.FloatFromRight
+      sceneConfig: Navigator.SceneConfigs.FloatFromBottom
     })
   }
 
   eachBook (book, self) {
     //this.navigateToThisEvent.bind(this)
+    console.log('Rendering ', book.title)
     return (<ListItem key={book}>
           <TouchableOpacity onPress={()=>self._navigateToThisEvent(book)}>
             <Thumbnail square size={100} source={{uri: book.imageLinks.thumbnail}} />
@@ -91,6 +95,23 @@ class Home extends Component {
     })
   }
 
+  searching(text) {
+    this.setState({
+        filterText: text,
+      });
+  }
+
+  setfilteredlist(book){
+      if (book.title.toLowerCase().indexOf(this.state.filterText.toLowerCase()) === -1) {
+        return;
+      }
+      else {
+        this.filteredList.push(book);
+        console.log('filteredList [0] is now ', this.filteredList[0].title)
+      }
+
+  }
+
   render() {
     console.log('Rendering')
     var navigationView = (
@@ -105,6 +126,8 @@ class Home extends Component {
           </Button>
       </View>
     );
+    this.filteredList = []
+    this.state.books.forEach((book) => this.setfilteredlist(book));
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
@@ -118,7 +141,9 @@ class Home extends Component {
                   <Icon name="ios-menu" />
                 </Button>
                 <Icon name="ios-search" />
-                <Icon placeholder="Search" />
+                <Input
+                  placeholder="Search"
+                  onChangeText = {(text) => this.searching(text)}/>
               </InputGroup>
             <Button transparent>
               Search
@@ -128,7 +153,7 @@ class Home extends Component {
           <Content>
             <List>
 
-              {this.state.books.map((item) =>
+              {this.filteredList.map((item) =>
               this.eachBook(item, this)
             )}
             </List>
