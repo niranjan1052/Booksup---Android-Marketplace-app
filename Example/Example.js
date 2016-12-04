@@ -1,58 +1,7 @@
 import React from 'react';
-import {
-  Image,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Camera from 'react-native-camera';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  overlay: {
-    position: 'absolute',
-    padding: 16,
-    right: 0,
-    left: 0,
-    alignItems: 'center',
-  },
-  topOverlay: {
-    top: 0,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  bottomOverlay: {
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  captureButton: {
-    padding: 15,
-    backgroundColor: 'white',
-    borderRadius: 40,
-  },
-  typeButton: {
-    padding: 5,
-  },
-  flashButton: {
-    padding: 5,
-  },
-  buttonsSpace: {
-    width: 10,
-  },
-});
+var ReadImageData = require('NativeModules').ReadImageData;
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -63,7 +12,7 @@ export default class Example extends React.Component {
     this.state = {
       camera: {
         aspect: Camera.constants.Aspect.fill,
-        captureTarget: Camera.constants.CaptureTarget.cameraRoll,
+        captureTarget: Camera.constants.CaptureTarget.memory,
         type: Camera.constants.Type.back,
         orientation: Camera.constants.Orientation.auto,
         flashMode: Camera.constants.FlashMode.auto,
@@ -80,8 +29,33 @@ export default class Example extends React.Component {
 
   takePicture() {
     if (this.camera) {
+      console.log('Just came inside function');
+      var apikey='4441018a5e9e554';
+      var url = 'https://api.imgur.com/3/image';
       this.camera.capture()
-        .then((data) => console.log(data))
+        .then(function(data)
+          {
+            console.log("hello Ambuj");
+            console.log('The image captured is: ', data);
+            console.log('I am not using the above image.');
+            var imgData = data.data
+            var someVar = JSON.stringify({
+              'image': imgData,
+              'type': 'base64'
+            });
+            console.log('someVar type: ', someVar.type);
+              fetch('https://api.imgur.com/3/image', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Client-ID e4ea40b80e128f3'
+                },
+                body: someVar
+              })
+            .then((response) => response.json())
+            .then((responseJson) => console.log('The response from imgur API is: ',responseJson))
+            .catch(err => console.error(err));
+          })
         .catch(err => console.error(err));
     }
   }
@@ -251,3 +225,49 @@ export default class Example extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  overlay: {
+    position: 'absolute',
+    padding: 16,
+    right: 0,
+    left: 0,
+    alignItems: 'center',
+  },
+  topOverlay: {
+    top: 0,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  bottomOverlay: {
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  captureButton: {
+    padding: 15,
+    backgroundColor: 'white',
+    borderRadius: 40,
+  },
+  typeButton: {
+    padding: 5,
+  },
+  flashButton: {
+    padding: 5,
+  },
+  buttonsSpace: {
+    width: 10,
+  },
+});
