@@ -6,7 +6,8 @@ import {
   View,
   ListView,
   TouchableOpacity,
-  Navigator
+  Navigator,
+  Alert
 } from 'react-native';
 
 import ApiHandler from '../services/ApiHandler'
