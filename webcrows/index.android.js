@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react'
 import {
   AppRegistry,
@@ -19,8 +13,6 @@ import styles from './app/styles/appStyles'
 import ScanCamera from './app/screens/ScanCamera'
 import Details from './app/screens/Details'
 import ManualEntry from './app/screens/ManualEntry'
-
-
 
 export default class webcrows extends Component {
 
