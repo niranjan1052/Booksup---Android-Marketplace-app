@@ -100,9 +100,11 @@ app.post('/loginX', function(req, res, next){
 
 app.post('/logoutX', function(req, res, next) {
   console.log('logout backend api called')
-  delete usersession.name;
-  delete req.session.name;
-  delete req.session;
+  if (usersession && usersession.name) {
+    delete usersession.name;
+    delete req.session.name;
+    delete req.session;
+  }
   var foo = {flag: 1};
   res.send(foo);
 });
