@@ -26,6 +26,7 @@ class Details extends Component {
   onPressHandler(){
     console.log('Button pressed');
     console.log('Bookdetails: ', this.props.bookdetails.items[0])
+    console.log('will be sending ',this.imgurl)
     fetch('https://module4server.herokuapp.com/addnewbook', {
       method: 'POST',
       headers: {
@@ -35,7 +36,8 @@ class Details extends Component {
       body: JSON.stringify({
         bookdetails : this.props.bookdetails.items[0],
         askingPrice: this.price,
-        userName: "John"
+        userName: "John",
+        imgurUrl : this.imgurl
       })
     })
       .then((response) => response.json())
