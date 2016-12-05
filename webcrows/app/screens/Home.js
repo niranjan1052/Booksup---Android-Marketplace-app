@@ -66,7 +66,8 @@ class Home extends Component {
     this.props.navigator.push({
       rt: "Entity",
       element: book,
-      sceneConfig: Navigator.SceneConfigs.FloatFromBottom
+      name:this.props.name,
+      sceneConfig: Navigator.SceneConfigs.FloatFromRight
     })
   }
 
