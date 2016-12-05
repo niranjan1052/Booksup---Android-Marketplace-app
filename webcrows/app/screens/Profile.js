@@ -106,7 +106,7 @@ export default class Profile extends Component {
                 source={require('../images/userIcon.png')}
                 style={styles.userImage}
               />
-              <Text ref={'loadUserTest'} style={styles.userName}>{'Need to figure out how to add user name'}</Text>
+              <Text ref={'loadUserTest'} style={styles.userName}>{this.props.name}</Text>
             </View>
           </View>
           <Content>
