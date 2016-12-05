@@ -17,7 +17,8 @@ class Details extends Component {
   constructor(props){
     super(props);
     this.state = {
-      text: ""
+      text: "",
+      pictaken: false
     }
     this.price = ''
   }
@@ -57,6 +58,12 @@ class Details extends Component {
     })
     this.props.navigator.pop()
   }
+  takepic(){
+    console.log('Will take pic')
+    this.setState({
+      pictaken: true
+    })
+  }
   render(){
     console.log('item count ',this.props.bookdetails.totalItems)
     return (
@@ -76,7 +83,15 @@ class Details extends Component {
             <TextInput
               onChangeText = {(price) => this.price=price}
             />
-
+            {!this.state.pictaken?
+              <Button
+                onPress={this.takepic.bind(this)}
+                title="Upload Picture"
+                color="#841584"
+              />
+            :
+              <Text>Image</Text>
+            }
           </View>
         }
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
