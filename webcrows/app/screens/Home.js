@@ -115,7 +115,8 @@ class Home extends Component {
 
   render() {
     console.log('Rendering')
-    var navigationView = (
+
+    var profileView = (
       <View style={{flex: 1, backgroundColor: '#fff'}}>
         <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
         <Button
@@ -125,12 +126,6 @@ class Home extends Component {
           >
           Upload new book
           </Button>
-      </View>
-    );
-
-    var profileView = (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
         <Profile navigator={this.props.navigator}/>
       </View>
     );

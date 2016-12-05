@@ -11,8 +11,7 @@ class ApiHandler {
             let user = data.name ? data.name : "anon"
             let flag = 2
 
-			// fetch('https://module4server.herokuapp.com/signUpX', {
-			fetch('http://10.0.2.2:2001/signUpX', {
+			fetch('https://module4server.herokuapp.com/signUpX', {
 				  method: 'POST',
 				  headers: {
 				    'Accept': 'application/json',
@@ -47,7 +46,7 @@ class ApiHandler {
 		console.log('apihandler logout is hit', data)
 		if (data && data.name) {
 			console.log('inside apihandler logout: ', data)
-			fetch('http://10.0.2.2:2001/logoutX', {
+			fetch('https://module4server.herokuapp.com/logoutX', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
@@ -72,8 +71,7 @@ class ApiHandler {
 		  let userLoggedIn=0
 		  let user = data.name ? data.name : "anon"
 
-	      // fetch('https://module4server.herokuapp.com/loginX', {
-					fetch('http://10.0.2.2:2001/loginX', {
+	      fetch('https://module4server.herokuapp.com/loginX', {
 	          method: 'POST',
 	          headers: {
 	            'Accept': 'application/json',
@@ -125,8 +123,7 @@ class ApiHandler {
 			/* try to get user from current session from backend */
 			console.log('I hit loadUser')
 			let user = "anon";
-			// fetch('https://module4server.herokuapp.com/session', {
-			fetch('http://10.0.2.2:2001/session', {
+			fetch('https://module4server.herokuapp.com/session', {
 				method: 'GET'
 			})
 			.then (function(response) {

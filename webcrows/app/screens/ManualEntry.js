@@ -20,11 +20,11 @@ class ManualEntry extends Component {
   }
   onPressHandler(){
     var apiquery = "https://www.googleapis.com/books/v1/volumes?q="+this.isbn
-
+    console.log('with manual isbn, i am going to query this: ', apiquery)
     fetch(apiquery, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) => {
-
+            console.log('and I got this as response from google: ', responseData)
             this.props.navigator.push({
               id: 'Details',
               bookdetails: responseData
@@ -42,7 +42,7 @@ class ManualEntry extends Component {
   render(){
     return (
       <View>
-      <Text>Hello</Text>
+      <Text>Please add the 13 digit ISBN number:</Text>
       <TextInput
         placeholder = "ISBN"
         onChangeText = {(isbn) => this.isbn=isbn}

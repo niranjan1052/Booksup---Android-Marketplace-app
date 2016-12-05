@@ -39,9 +39,6 @@ class ScanCamera extends Component{
             })
         })
         .done();
-
-
-
   }
   manualEntry(){
     this.setState({showCamera: false})
