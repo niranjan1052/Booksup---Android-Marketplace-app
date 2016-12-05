@@ -58,11 +58,11 @@ export default class webcrows extends Component {
 
       case 'ScanCamera':
         return(
-          <ScanCamera {...globalNavProps} />
+          <ScanCamera {...globalNavProps}/>
         )
       case 'AddPic':
         return(
-          <AddCamera {...globalNavProps} />
+          <AddCamera {...globalNavProps} route={route}/>
         )
 
       default:

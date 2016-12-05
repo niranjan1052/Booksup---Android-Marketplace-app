@@ -18,14 +18,14 @@ class Details extends Component {
     super(props);
     this.state = {
       text: "",
-      pictaken: false
+      pictaken: false,
     }
     this.price = ''
+    this.imgurl = ''
   }
   onPressHandler(){
     console.log('Button pressed');
     console.log('Bookdetails: ', this.props.bookdetails.items[0])
-    //fetch('https://adityatest.herokuapp.com/addnewbook', {
     fetch('https://module4server.herokuapp.com/addnewbook', {
       method: 'POST',
       headers: {
@@ -64,8 +64,15 @@ class Details extends Component {
       pictaken: true
     })
     this.props.navigator.push({
-      rt : 'AddPic'
+      rt : 'AddPic',
+      selfvar : this
     })
+  }
+  callbackAddCamera(url){
+    console.log('called callback')
+    console.log('url is ', url)
+    this.imgurl = url
+    console.log('price is ',this.price)
   }
   render(){
     console.log('item count ',this.props.bookdetails.totalItems)
@@ -93,7 +100,7 @@ class Details extends Component {
                 color="#841584"
               />
             :
-              <Text>Image</Text>
+              <Text>Image URL: {this.imgurl}</Text>
             }
           </View>
         }

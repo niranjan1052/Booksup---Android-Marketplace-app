@@ -32,6 +32,7 @@ export default class AddCamera extends React.Component {
       console.log('Just came inside function');
       var apikey='4441018a5e9e554';
       var url = 'https://api.imgur.com/3/image';
+      let self = this
       this.camera.capture()
         .then(function(data)
           {
@@ -53,7 +54,12 @@ export default class AddCamera extends React.Component {
                 body: someVar
               })
             .then((response) => response.json())
-            .then((responseJson) => console.log('The response from imgur API is: ',responseJson))
+            .then((responseJson) => {
+              console.log('The response from imgur API is: ',responseJson)
+              console.log('calling callback with ', responseJson.data.link)
+              self.props.route.selfvar.callbackAddCamera(responseJson.data.link)
+              self.props.navigator.pop()
+            })
             .catch(err => console.error(err));
           })
         .catch(err => console.error(err));
@@ -103,9 +109,9 @@ export default class AddCamera extends React.Component {
     const { back, front } = Camera.constants.Type;
 
     if (this.state.camera.type === back) {
-      icon = require('./assets/ic_camera_rear_white.png');
+      icon = require('../assets/ic_camera_rear_white.png');
     } else if (this.state.camera.type === front) {
-      icon = require('./assets/ic_camera_front_white.png');
+      icon = require('../assets/ic_camera_front_white.png');
     }
 
     return icon;
@@ -136,11 +142,11 @@ export default class AddCamera extends React.Component {
     const { auto, on, off } = Camera.constants.FlashMode;
 
     if (this.state.camera.flashMode === auto) {
-      icon = require('./assets/ic_flash_auto_white.png');
+      icon = require('../assets/ic_flash_auto_white.png');
     } else if (this.state.camera.flashMode === on) {
-      icon = require('./assets/ic_flash_on_white.png');
+      icon = require('../assets/ic_flash_on_white.png');
     } else if (this.state.camera.flashMode === off) {
-      icon = require('./assets/ic_flash_off_white.png');
+      icon = require('../assets/ic_flash_off_white.png');
     }
 
     return icon;
@@ -192,7 +198,7 @@ export default class AddCamera extends React.Component {
                 onPress={this.takePicture}
             >
               <Image
-                  source={require('./assets/ic_photo_camera_36pt.png')}
+                  source={require('../assets/ic_photo_camera_36pt.png')}
               />
             </TouchableOpacity>
             ||
@@ -207,7 +213,7 @@ export default class AddCamera extends React.Component {
                   onPress={this.startRecording}
               >
                 <Image
-                    source={require('./assets/ic_videocam_36pt.png')}
+                    source={require('../assets/ic_videocam_36pt.png')}
                 />
               </TouchableOpacity>
               ||
@@ -216,7 +222,7 @@ export default class AddCamera extends React.Component {
                   onPress={this.stopRecording}
               >
                 <Image
-                    source={require('./assets/ic_stop_36pt.png')}
+                    source={require('../assets/ic_stop_36pt.png')}
                 />
               </TouchableOpacity>
           }
