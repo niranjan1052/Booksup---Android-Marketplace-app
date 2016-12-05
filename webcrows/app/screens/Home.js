@@ -12,6 +12,7 @@ import {
 import ApiHandler from '../services/ApiHandler'
 import ViewContainer from '../components/ViewContainer/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground/StatusBarBackground'
+import Profile from './Profile'
 import FitImage from 'react-native-fit-image';
 
 import {
@@ -126,13 +127,21 @@ class Home extends Component {
           </Button>
       </View>
     );
+
+    var profileView = (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
+        <Profile navigator={this.props.navigator}/>
+      </View>
+    );
+
     this.filteredList = []
     this.state.books.forEach((book) => this.setfilteredlist(book));
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => navigationView}
+        renderNavigationView={() => profileView}
         ref={'DRAWER_REF'}>
         <Container>
           <Header searchBar rounded>

@@ -11,7 +11,8 @@ class ApiHandler {
             let user = data.name ? data.name : "anon"
             let flag = 2
 
-			fetch('https://module4server.herokuapp.com/signUpX', {
+			// fetch('https://module4server.herokuapp.com/signUpX', {
+			fetch('http://10.0.2.2:2001/signUpX', {
 				  method: 'POST',
 				  headers: {
 				    'Accept': 'application/json',
@@ -35,12 +36,34 @@ class ApiHandler {
 		                Alert.alert("User already exists..")
 		            } else {
 		                Alert.alert("Server error")
-		            }	                  
+		            }
 				})
 		} else {
 			console.log('Messed up, no good content from form: ' + data)
 		}
 	}
+
+	logout(data, cb) {
+		console.log('apihandler logout is hit', data)
+		if (data && data.name) {
+			console.log('inside apihandler logout: ', data)
+			fetch('http://10.0.2.2:2001/logoutX', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					userName: data.name
+				})
+			})
+			.then( (response) => response.json() )
+	    .then( (responseJson) => {
+				console.log('received response from logout call', responseJson)
+				 cb();
+			})
+	}
+}
 
 	login(data, cb) {
 		if (data && data.name && data.password) {
@@ -49,7 +72,8 @@ class ApiHandler {
 		  let userLoggedIn=0
 		  let user = data.name ? data.name : "anon"
 
-	      fetch('https://module4server.herokuapp.com/loginX', {
+	      // fetch('https://module4server.herokuapp.com/loginX', {
+					fetch('http://10.0.2.2:2001/loginX', {
 	          method: 'POST',
 	          headers: {
 	            'Accept': 'application/json',
@@ -71,7 +95,7 @@ class ApiHandler {
 		                Alert.alert("Authentication failed")
 		            }
 	        })
-	    } 
+	    }
 	    else {
 			console.log('Messed up, no good content from form: ' + data)
 		}
@@ -100,12 +124,21 @@ class ApiHandler {
 		return new Promise( (resolve, reject) => {
 			/* try to get user from current session from backend */
 			console.log('I hit loadUser')
-			let user = "anon"
-			if (user!="anon") {
-				resolve (user);
-			} else {
-				reject ();
-			}
+			let user = "anon";
+			// fetch('https://module4server.herokuapp.com/session', {
+			fetch('http://10.0.2.2:2001/session', {
+				method: 'GET'
+			})
+			.then (function(response) {
+				return response.json()
+				.then (function(json) {
+					console.log('at load user response with data', json)
+					if (json && json.flag==1 && json.name) {
+						user = json.name
+					}
+					resolve(user);
+				});
+			})
 		});
 	}
 }
