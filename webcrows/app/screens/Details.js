@@ -63,6 +63,9 @@ class Details extends Component {
     this.setState({
       pictaken: true
     })
+    this.props.navigator.push({
+      rt : 'AddPic'
+    })
   }
   render(){
     console.log('item count ',this.props.bookdetails.totalItems)
