@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react'
 import {
   AppRegistry,
@@ -19,8 +13,7 @@ import styles from './app/styles/appStyles'
 import ScanCamera from './app/screens/ScanCamera'
 import Details from './app/screens/Details'
 import ManualEntry from './app/screens/ManualEntry'
-
-
+import AddCamera from './app/screens/AddCamera'
 
 export default class webcrows extends Component {
 
@@ -65,7 +58,11 @@ export default class webcrows extends Component {
 
       case 'ScanCamera':
         return(
-          <ScanCamera {...globalNavProps} />
+          <ScanCamera {...globalNavProps}/>
+        )
+      case 'AddPic':
+        return(
+          <AddCamera {...globalNavProps} route={route}/>
         )
 
       default:
