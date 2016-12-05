@@ -40,6 +40,7 @@ class Home extends Component {
       books: []
     }
     this.onPressButton = this.onPressButton.bind(this);
+    this._profile = this._profile.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,13 @@ class Home extends Component {
       element: book,
       sceneConfig: Navigator.SceneConfigs.FloatFromBottom
     })
+  }
+
+  _profile() {
+    this.refs['DRAWER_REF'].navigator.push({
+      rt: "Profile",
+      sceneConfig: Navigator.SceneConfigs.FloatFromBottom
+    });
   }
 
   eachBook (book, self) {

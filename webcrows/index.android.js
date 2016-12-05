@@ -15,6 +15,7 @@ import {
 import Home from './app/screens/Home'
 import Entity from './app/screens/Entity'
 import Login from './app/screens/Login'
+import Profile from './app/screens/Profile'
 import styles from './app/styles/appStyles'
 
 
@@ -33,6 +34,14 @@ export default class webcrows extends Component {
       case "Home":
         return (
             <Home {...globalNavProps}
+             key={route.rt}
+             name={route.name}
+            />
+          )
+
+      case "Profile":
+        return (
+            <Profile {...globalNavProps}
              key={route.rt}
              name={route.name}
             />
@@ -66,7 +75,7 @@ export default class webcrows extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{rt: "Login"}}
+        initialRoute={{rt: "Profile"}}
         ref="appNavigator"
         style={styles.navStyles}
         renderScene={ this._renderScene }

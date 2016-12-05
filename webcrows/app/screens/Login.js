@@ -32,7 +32,7 @@ export default class Login extends Component {
   componentDidMount() {
     ApiHandler.loadUser()
       .then( (user)=> {
-        onLoadUserCompleted(user) 
+        onLoadUserCompleted(user)
       } )
       .catch(( )=>{});
   }
@@ -124,7 +124,7 @@ export default class Login extends Component {
         </View>
       </View>
     ) : null;
-      
+
     return (
       <View>
         {contactDetails}
@@ -207,7 +207,7 @@ export default class Login extends Component {
 
   _navigateToHome(user) {
     this.props.navigator.push({
-      rt: "Home",
+      rt: "Profile",
       name: user
     })
   }

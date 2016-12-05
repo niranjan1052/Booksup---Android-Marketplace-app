@@ -35,7 +35,7 @@ class ApiHandler {
 		                Alert.alert("User already exists..")
 		            } else {
 		                Alert.alert("Server error")
-		            }	                  
+		            }
 				})
 		} else {
 			console.log('Messed up, no good content from form: ' + data)
@@ -71,7 +71,7 @@ class ApiHandler {
 		                Alert.alert("Authentication failed")
 		            }
 	        })
-	    } 
+	    }
 	    else {
 			console.log('Messed up, no good content from form: ' + data)
 		}
@@ -95,6 +95,11 @@ class ApiHandler {
 	  });
 	};
 
+	getUser() {
+		let user = "anon"
+		console.log(user)
+		return user;
+	}
 
 	loadUser() {
 		return new Promise( (resolve, reject) => {
