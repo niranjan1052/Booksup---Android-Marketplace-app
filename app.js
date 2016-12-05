@@ -234,6 +234,7 @@ app.post('/addnewbook',function(req,res){
   var BuyLink = req.body.bookdetails.saleInfo.buyLink;
   var AskingPrice = req.body.askingPrice;
   var UserName = req.body.userName;
+  var ImgurUrl = req.body.imgurUrl
   console.log('isbn ', req.body.bookdetails.saleInfo.retailPrice);
   console.log('Initialized Values');
   var InterestedUsers = [];
@@ -253,7 +254,8 @@ app.post('/addnewbook',function(req,res){
         description: Description,
         imageLinks: ImageLinks,
         interestedUsers:  InterestedUsers,
-        noOfInterestedUsers : NoOfInterestedUsers
+        noOfInterestedUsers : NoOfInterestedUsers,
+        imgurUrl : ImgurUrl
     },function(err,numInserted)
       {
         if(err){
