@@ -3,10 +3,19 @@ var mongojs = require("mongojs");
 var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 app.use(bodyparser());
+app.use(cookieParser());
+app.use(session({
+  secret: 'W3bC40W$',
+  saveUnitialized: true,
+  resave: true
+}));
 app.set('view engine', 'ejs');
 var serv = require('http').Server(app);
 var db = mongojs('mongodb://librarian:timepass@ds113628.mlab.com:13628/webcrowsbooks', ['users','books']);
+var usersession;
 
 app.get('/',function(req, res) {
     res.sendFile(__dirname + '/login.html');
@@ -29,6 +38,8 @@ app.post('/signUpX', function(req, res, next){
     }
     else
     {
+      usersession = req.session;
+      usersession.name = username;
       db.users.insert({
         userName: username,
         userEmail: useremail,
@@ -52,6 +63,15 @@ app.post('/signUpX', function(req, res, next){
   });
 });
 
+app.get('/session', function(req, res, next) {
+  var foo = {name: "anon", flag: 0};
+  if (usersession && usersession.name) {
+    foo.flag = 1;
+    foo.name = usersession.name;
+  }
+  res.send(foo);
+});
+
 app.post('/loginX', function(req, res, next){
   var userName = req.body.userName;
   var userPass = req.body.userPass;
@@ -64,6 +84,9 @@ app.post('/loginX', function(req, res, next){
     }
     else if(result.length)
     {
+      usersession = req.session;
+      usersession.name = userName;
+      console.log(usersession);
       var foo = {flag: 1};
       res.send(foo);
     }
@@ -73,6 +96,15 @@ app.post('/loginX', function(req, res, next){
         res.send(foo);
     }
   });
+});
+
+app.post('/logoutX', function(req, res, next) {
+  console.log('logout backend api called')
+  delete usersession.name;
+  delete req.session.name;
+  delete req.session;
+  var foo = {flag: 1};
+  res.send(foo);
 });
 
 app.get('/explore', function(req, res, next) {
@@ -185,21 +217,20 @@ app.post('/showinterest' , function(req,res){
   var userName = req.body.userName;
   console.log('user ',req.body,' shown interest in ',postId,' post');
   db.books.update({postId: postId}, {$push: {interestedUsers: userName}, $inc: {noOfInterestedUsers: 1}}, function(err,noUpdated){
-if(err){
-  res.send({flag:0});
-}
-else if( noUpdated){
-  db.users.update({userName:userName},{$push: {interestedPosts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
   if(err){
-    res.send({flag: 2});
+    res.send({flag:0});
   }
-  else if(noofUpdated){
-    var foo = {flag: 1};
-    res.send(foo);
-  }
-
-});
-}
+  else if( noUpdated){
+    db.users.update({userName:userName},{$push: {interestedPosts: postId}, $inc: {noOfInterestedPosts:1 }} , function(err,noofUpdated){
+      if(err){
+        res.send({flag: 2});
+      }
+      else if(noofUpdated){
+        var foo = {flag: 1};
+        res.send(foo);
+      }
+    });
+   }
   });
 });
 
@@ -234,6 +265,7 @@ app.post('/addnewbook',function(req,res){
   var BuyLink = req.body.bookdetails.saleInfo.buyLink;
   var AskingPrice = req.body.askingPrice;
   var UserName = req.body.userName;
+  var imgurUrl = res.body.imgurUrl;
   console.log('isbn ', req.body.bookdetails.saleInfo.retailPrice);
   console.log('Initialized Values');
   var InterestedUsers = [];
@@ -253,7 +285,8 @@ app.post('/addnewbook',function(req,res){
         description: Description,
         imageLinks: ImageLinks,
         interestedUsers:  InterestedUsers,
-        noOfInterestedUsers : NoOfInterestedUsers
+        noOfInterestedUsers : NoOfInterestedUsers,
+        imgurUrl: imgurUrl
     },function(err,numInserted)
       {
         if(err){

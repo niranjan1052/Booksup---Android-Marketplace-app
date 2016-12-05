@@ -11,8 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "*",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "mongodb": "^2.2.10",
     "mongojs": "^2.4.0",
     "monk": "*",
