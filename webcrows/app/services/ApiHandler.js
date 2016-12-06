@@ -117,27 +117,6 @@ class ApiHandler {
 	  });
 	};
 
-
-	loadUser() {
-		return new Promise( (resolve, reject) => {
-			/* try to get user from current session from backend */
-			console.log('I hit loadUser')
-			let user = "anon";
-			fetch('https://module4server.herokuapp.com/session', {
-				method: 'GET'
-			})
-			.then (function(response) {
-				return response.json()
-				.then (function(json) {
-					console.log('at load user response with data', json)
-					if (json && json.flag==1 && json.name) {
-						user = json.name
-					}
-					resolve(user);
-				});
-			})
-		});
-	}
 }
 
 export default new ApiHandler();

@@ -29,13 +29,6 @@ export default class Login extends Component {
     this._navigateToHome = this._navigateToHome.bind(this)
   }
 
-  componentDidMount() {
-    ApiHandler.loadUser()
-      .then( (user)=> {
-         this.onLoadUserCompleted(user)
-      } )
-      .catch(( )=>{});
-  }
 
   render() {
     let footerText = this.state.isSignup ? (
