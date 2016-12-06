@@ -101,7 +101,10 @@ class MyUploads extends Component {
       <Container>
         <Content>
           <Header>
-              <Button transparent onPress={ () => this.props.navigator.pop() }>
+              <Button transparent onPress={ () => this.props.navigator.push({
+                rt: "Home",
+                name: this.props.name
+              }) }>
                   <Icon name='ios-arrow-back' />
               </Button>
               <Title>My Uploads</Title>
