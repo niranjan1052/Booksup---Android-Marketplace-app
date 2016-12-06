@@ -20,8 +20,7 @@ class ApiHandler {
 				  body: JSON.stringify({
 				    userName: data.name,
 				    userEmail: data.email,
-				    userContact: data.contact,
-				    userPass: data.password,
+				    userPass: data.password
 				  })
 				})
 			.then((response) => response.json())
@@ -41,28 +40,6 @@ class ApiHandler {
 			console.log('Messed up, no good content from form: ' + data)
 		}
 	}
-
-	logout(data, cb) {
-		console.log('apihandler logout is hit', data)
-		if (data && data.name) {
-			console.log('inside apihandler logout: ', data)
-			fetch('https://module4server.herokuapp.com/logoutX', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					userName: data.name
-				})
-			})
-			.then( (response) => response.json() )
-	    .then( (responseJson) => {
-				console.log('received response from logout call', responseJson)
-				 cb();
-			})
-	}
-}
 
 	login(data, cb) {
 		if (data && data.name && data.password) {

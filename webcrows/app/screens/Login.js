@@ -21,10 +21,8 @@ export default class Login extends Component {
     this.state = { isSignup: false };
 
     this.email = null;
-    this.contact = null;
     this.name = null;
     this.password = null;
-    this.passwordConfirmation = null;
     this.onLoadUserCompleted = this.onLoadUserCompleted.bind(this)
     this._navigateToHome = this._navigateToHome.bind(this)
   }
@@ -66,26 +64,7 @@ export default class Login extends Component {
 
 
   renderForm() {
-    let passwordConfirmationField = this.state.isSignup ? (
-      <View style={styles.inputContainer}>
-        <TextInput
-          ref={(ref) => this._passwordConfirmationRef = ref}
-          placeholder="Password Confirmation"
-          placeholderTextColor="rgba(255,255,255,0.75)"
-          secureTextEntry={true}
-          selectionColor="white"
-          style={styles.input}
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={(password) => this.passwordConfirmation = password}
-          returnKeyType="go"
-          onSubmitEditing={() => this.submitForm()}
-        />
-      </View>
-    ) : null;
-
     let contactDetails = this.state.isSignup ? (
-        <View>
          <View style={styles.inputContainer}>
           <TextInput
             placeholder="Email"
@@ -97,25 +76,9 @@ export default class Login extends Component {
             autoCorrect={false}
             onChangeText={(email) => this.email = email}
             returnKeyType="next"
-            onSubmitEditing={() => this._contactRef.focus()}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            ref={(ref) => this._contactRef = ref}
-            placeholder="Contact number"
-            placeholderTextColor="rgba(255,255,255,0.75)"
-            keyboardType="phone-pad"
-            selectionColor="white"
-            style={styles.input}
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText={(contact) => this.contact = contact}
-            returnKeyType="next"
             onSubmitEditing={() => this._nameRef.focus()}
           />
         </View>
-      </View>
     ) : null;
 
     return (
@@ -148,10 +111,9 @@ export default class Login extends Component {
             autoCorrect={false}
             onChangeText={(password) => this.password = password}
             returnKeyType={this.state.isSignup ? "next" : "go"}
-            onSubmitEditing={() => this.state.isSignup ? this._passwordConfirmationRef.focus() : this.submitForm()}
+            onSubmitEditing={() => this.submitForm()}
           />
         </View>
-        {passwordConfirmationField}
         <View style={styles.loginButtonContainer}>
           <Button
             onPress={() => this.submitForm()}
@@ -167,14 +129,11 @@ export default class Login extends Component {
 
   submitForm() {
     if (this.state.isSignup) {
-      if (!this.name || !this.contact || !this.email || !this.password || !this.passwordConfirmation)
+      if (!this.name || !this.email || !this.password)
         Alert.alert("Missing input fields");
-      if (this.password !== this.passwordConfirmation)
-        Alert.alert("Passwords don't match");
 
       ApiHandler.signup({
         email: this.email,
-        contact: this.contact,
         name: this.name,
         password: this.password
       }, this.onLoadUserCompleted);
