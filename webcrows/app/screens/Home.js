@@ -96,6 +96,14 @@ class Home extends Component {
     })
   }
 
+  myUploads() {
+    console.log('Pressed')
+    this.props.navigator.push({
+      rt : "MyUploads",
+      user: this.props.name
+    })
+  }
+
   searching(text) {
     this.setState({
         filterText: text,
@@ -124,7 +132,10 @@ class Home extends Component {
           color="#841584"
           >
           Upload new book
-          </Button>
+        </Button>
+        <Button onPress={this.myUploads.bind(this)} title="My Uploads" color="#841584">
+            My Uploads
+        </Button>
       </View>
     );
     this.filteredList = []
