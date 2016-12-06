@@ -97,6 +97,14 @@ class Home extends Component {
     })
   }
 
+  myUploads() {
+    console.log('Pressed')
+    this.props.navigator.push({
+      rt : "MyUploads",
+      user: this.props.name
+    })
+  }
+
   searching(text) {
     this.setState({
         filterText: text,
@@ -137,9 +145,12 @@ class Home extends Component {
           </Button>
           <Text></Text>
           <Button rounded style={{alignSelf:'center'} } onPress={() => this.loadmyinterests()} >
-
             Load my Interests
           </Button>
+        </Button>
+        <Button onPress={this.myUploads.bind(this)} title="My Uploads" color="#841584">
+            My Uploads
+        </Button>
       </View>
     );
     this.filteredList = []
