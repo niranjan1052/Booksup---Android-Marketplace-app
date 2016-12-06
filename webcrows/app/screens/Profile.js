@@ -100,7 +100,9 @@ export default class Profile extends Component {
           </Header>
 
           <View style={styles.body}>
+            <Image source={require('../images/profileBackground.png')} style={styles.backgroundImage}>
             <View style={styles.profileView}>
+
               <Text style={styles.titleStyle}>My Books</Text>
               <Image
                 source={require('../images/userIcon.png')}
@@ -108,7 +110,9 @@ export default class Profile extends Component {
               />
               <Text ref={'loadUserTest'} style={styles.userName}>{this.props.name}</Text>
             </View>
+            </Image>
           </View>
+
           <Content>
             <List>
 
@@ -124,6 +128,11 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: 500,
+    height: 500,
+  },
   body: {
     backgroundColor: 'white',
     borderBottomWidth: 2,
