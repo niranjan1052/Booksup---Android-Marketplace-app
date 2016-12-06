@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
-import { Container, Header, Content, Title,Button, Icon,Card, CardItem, Thumbnail } from 'native-base';
+import { Container, Header, Content, Title,Button, Icon,Card, CardItem, Thumbnail, H2, H3 } from 'native-base';
 import ViewContainer from '../components/ViewContainer/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground/StatusBarBackground'
 import FitImage from 'react-native-fit-image';
@@ -86,6 +86,10 @@ console.log("user "+user+" shown interest in book "+ book.title );
 }
 
 	render() {
+    var localURL = this.props.element.imgurUrl;
+    if (localURL=="")
+      localURL=this.props.element.imageLinks.thumbnail;
+    var localDesc = this.props.element.description.substring(0, Math.min(350, this.props.element.description.length)) + '...';
 
   //  var interestedU = [];
     // console.log('book detail inside render : ', this.state.bookdetail.interestedUsers)
@@ -103,23 +107,24 @@ console.log("user "+user+" shown interest in book "+ book.title );
 
                 </Header>
                         <View style={{ flex: 1 }}>
-
-                              <Text> {this.props.element.title } </Text>
-                              <Text> Publisher: {this.props.element.publisher } </Text>
-                              <Text> ISBN: {this.props.element.isbn } </Text>
-                            <Image source={{uri: this.props.element.imageLinks.thumbnail}} style={{margin:20, alignSelf:'center',width:200,height:200}} />
+                            <H3 style={{ alignSelf:'center' }} > {this.props.element.title } </H3>
                             <Text></Text>
-
-                             <Text>Price: ${this.props.element.askingPrice}</Text>
-                              <Text></Text>
-                              <Text>Seller notes: {this.props.element.sellerNotes }</Text>
-                              <Text></Text>
-                               <Text>Description</Text>
+                            <Image source={{uri: localURL}} style={{margin:20, alignSelf:'center',width:200,height:200}} />
+                            <Text></Text>
+                            <Text> Seller: {this.props.element.userName } </Text>
+                            <Text> Price: ${this.props.element.askingPrice}</Text>
+                            <Text> Publisher: {this.props.element.publisher } </Text>
+                            <Text> ISBN: {this.props.element.isbn } </Text>
+                            <Text></Text>
+                            <Text> Seller notes: {this.props.element.sellerNotes }</Text>
+                            <Text></Text>
+                            <Text> Description: </Text>
+                            <Text></Text>
                             <Text style={{borderWidth :2}}>
-                             {this.props.element.description}
+                             {localDesc}
                             </Text>
 
-
+                            <Text></Text>
                             <Text></Text>
                           { ((interestedU.indexOf(this.props.name)==-1) && this.state.interested == 0 ) ?
                             <Button rounded style={{alignSelf:'center'} } onPress={() => this.handleShowInterest(this.props.element,this.props.name)} >
@@ -129,12 +134,9 @@ console.log("user "+user+" shown interest in book "+ book.title );
                             :
                             <Button disabled style={{alignSelf:'center'} }  >
 
-                              Already Shown Interest!
+                              Interested
                             </Button>
                            }
-                           <Text></Text>
-                           <Image source={{uri: this.props.element.imgurUrl}} style={{margin:20, alignSelf:'center',width:200,height:200}} />
-                           <Text></Text>
 
  </View>
                 </Content>

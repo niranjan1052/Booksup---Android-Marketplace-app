@@ -71,7 +71,7 @@ class MyUploads extends Component {
     console.log('Inside MyUploads Component - eachBook function');
     return (<CardItem key={book.postId}>
               <Thumbnail square size={100} source={{uri: book.imageLinks.smallThumbnail}} />
-              <Text> {book.title}</Text>
+              <Text style= {{fontWeight: 'bold' }}> {book.title}</Text>
               <Text> {book.author} </Text>
               <Text> {`$ `} {book.askingPrice} </Text>
               <View style={{flexDirection:'row'}}>

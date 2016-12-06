@@ -13,6 +13,7 @@ import {
   Image
 } from 'react-native';
 import BarcodeScanner from 'react-native-barcodescanner';
+import { H3 , Container} from 'native-base';
 
 class Details extends Component {
   constructor(props){
@@ -84,42 +85,54 @@ class Details extends Component {
   render(){
     console.log('item count ',this.props.bookdetails.totalItems)
     return (
+      <Container>
       <View>
         {(this.props.bookdetails.totalItems==0)?
-          <Text> No match for the barcode! </Text> :
+          <H3> No match for the barcode! </H3> :
           <View style={styles.container}>
-            <Text> {this.props.bookdetails.items[0].volumeInfo.title} </Text>
-            <Text>{this.props.bookdetails.items[0].volumeInfo.authors}</Text>
+            <H3 style={{ alignSelf:'center' }} > {this.props.bookdetails.items[0].volumeInfo.title} </H3>
+            <Text></Text>
+            <Text>Author(s): {this.props.bookdetails.items[0].volumeInfo.authors}</Text>
+            <Text></Text>
             <Text> {this.props.bookdetails.items[0].volumeInfo.industryIdentifiers[0].type} : {this.props.bookdetails.items[0].volumeInfo.industryIdentifiers[0].identifier} </Text>
+            <Text></Text>
+            <Text></Text>
               <TextInput
-                  style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
+                  style={{height: 40, borderColor: 'gray', borderWidth: 2}}
                   onChangeText={(text) => this.setState({text})}
                   value={this.state.text}
-                  placeholder={'Extra Information'}
+                  placeholder={'Enter additional information'}
                   multiline = {true}
-                  numberOfLines = {4}
+                  numberOfLines = {3}
               />
+            <Text></Text>
+            <Text></Text>
             <Text> Selling Pice: </Text>
             <TextInput
+              style={{height: 40, borderColor: 'gray', borderWidth: 2}}
               onChangeText = {(price) => this.price=price}
             />
+            <Text></Text>
+            <Text></Text>
             {!this.state.pictaken?
               <Button
                 onPress={this.takepic.bind(this)}
                 title="Upload Picture"
                 color="#841584"
+                style={{ alignSelf:'center' }}
               />
             :
               <View style={styles.container}>
-              <Text>Image URL: {this.imgurl}</Text>
               <Image
-                style={{width: 100, height: 100}}
+                style={{width: 100, height: 100, alignSelf:'center'}}
                 source={{uri: this.imgurl}}
               />
               </View>
             }
           </View>
         }
+        <Text></Text>
+        <Text></Text>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Button
           onPress={this.goback.bind(this)}
@@ -133,6 +146,7 @@ class Details extends Component {
         />
         </View>
       </View>
+    </Container>
     )
   }
 }
@@ -142,7 +156,7 @@ const styles = StyleSheet.create({
     padding : 10
   },
   container: {
-    alignItems: 'center'
+
   },
   textbox: {
     alignSelf : 'flex-start',

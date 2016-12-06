@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    marginTop: 40,
     height: windowHeight,
     width: windowWidth,
     backgroundColor: Colors.primary

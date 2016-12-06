@@ -83,7 +83,7 @@ class Home extends Component {
             <Thumbnail square size={100} source={{uri: book.imageLinks.thumbnail}} />
           </TouchableOpacity>
           <View style={{flexDirection:'column'}}>
-            <Text> {book.title}</Text>
+            <Text style= {{fontWeight: 'bold' }}> {book.title}</Text>
             <Text> {book.author} </Text>
             <Text> {`$ `} {book.askingPrice} </Text>
           </View>
@@ -152,11 +152,11 @@ class Home extends Component {
                     <Text ref={'loadUserTest'} style={styles.userName}>{this.props.name}</Text>
                     </Image>
                     <View style={styles.profileView}>
-                        <Button block style={{ backgroundColor: '#808080' } } textStyle={{color: '#fff'}} onPress={this.loadmyinterests}> My Interests </Button>
+                        <Button block style={{ backgroundColor: 'darkblue' } } textStyle={{color: '#fff'}} onPress={this.loadmyinterests}> My Interests </Button>
                         <Text> </Text>
-                        <Button block style={{ backgroundColor: '#808080' } } textStyle={{color: '#fff'}} onPress={this.myUploads.bind(this)}> My Uploads </Button>
+                        <Button block style={{ backgroundColor: 'darkblue' } } textStyle={{color: '#fff'}} onPress={this.myUploads.bind(this)}> My Uploads </Button>
                         <Text> </Text>
-                        <Button block style={{ backgroundColor: '#808080' } } textStyle={{color: '#fff'}}
+                        <Button block style={{ backgroundColor: 'darkblue' } } textStyle={{color: '#fff'}}
                             onPress={
                                 () => {
                                 this.props.navigator.push({
