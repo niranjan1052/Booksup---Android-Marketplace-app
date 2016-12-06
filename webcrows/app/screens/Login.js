@@ -32,7 +32,7 @@ export default class Login extends Component {
   componentDidMount() {
     ApiHandler.loadUser()
       .then( (user)=> {
-        onLoadUserCompleted(user) 
+         this.onLoadUserCompleted(user)
       } )
       .catch(( )=>{});
   }
@@ -124,7 +124,7 @@ export default class Login extends Component {
         </View>
       </View>
     ) : null;
-      
+
     return (
       <View>
         {contactDetails}
