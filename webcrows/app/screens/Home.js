@@ -42,7 +42,8 @@ class Home extends Component {
     }
     this.onPressButton = this.onPressButton.bind(this);
     this.setfilteredlist = this.setfilteredlist.bind(this);
-    this.searching = this.searching.bind(this)
+    this.searching = this.searching.bind(this);
+    this.loadmyinterests = this.loadmyinterests.bind(this);
   }
 
   componentDidMount() {
@@ -113,6 +114,15 @@ class Home extends Component {
 
   }
 
+
+  loadmyinterests(){
+    console.log('loading my interests');
+    this.props.navigator.push({
+      rt : "MyInterests",
+      name: this.props.name,
+
+    })
+  }
   render() {
     console.log('Rendering')
     var navigationView = (
@@ -124,6 +134,11 @@ class Home extends Component {
           color="#841584"
           >
           Upload new book
+          </Button>
+          <Text></Text>
+          <Button rounded style={{alignSelf:'center'} } onPress={() => this.loadmyinterests()} >
+
+            Load my Interests
           </Button>
       </View>
     );
