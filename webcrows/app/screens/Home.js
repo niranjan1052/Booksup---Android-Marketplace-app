@@ -25,7 +25,8 @@ import {
   Header,
   Title,
   InputGroup,
-  Input
+  Input,
+  Fab
 } from 'native-base'
 
 import styles from '../styles/appStyles'
@@ -38,12 +39,14 @@ class Home extends Component {
     this.filteredList = []
     this.state = {
       books: [],
-      filterText: ''
+      filterText: '',
+      fabactive: true
     }
     this.onPressButton = this.onPressButton.bind(this);
     this.setfilteredlist = this.setfilteredlist.bind(this);
     this.searching = this.searching.bind(this);
     this.loadmyinterests = this.loadmyinterests.bind(this);
+    this.scan = this.scan.bind(this);
   }
 
   componentDidMount() {
@@ -95,7 +98,8 @@ class Home extends Component {
   scan(){
     console.log('Pressed')
     this.props.navigator.push({
-      rt : "ScanCamera"
+      rt : "ScanCamera",
+      sceneConfig: Navigator.SceneConfigs.FadeAndroid
     })
   }
 
@@ -136,30 +140,34 @@ class Home extends Component {
   render() {
     console.log('Rendering')
     var navigationView = (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
-        <Button
-          onPress={() => {
-            this.props.navigator.push({
-              rt : "ScanCamera",
-              sceneConfig: Navigator.SceneConfigs.FadeAndroid,
-              name : this.props.name
-            })
-          }}
-          title="Add a new Book"
-          color="#841584"
-          >
-          Upload new book
-          </Button>
-          <Text></Text>
-          <Button rounded style={{alignSelf:'center'} } onPress={() => this.loadmyinterests()} >
-            Load my Interests
-          </Button>
-          <Text></Text>
-        <Button onPress={this.myUploads.bind(this)} title="My Uploads" color="#841584">
-            My Uploads
-        </Button>
-      </View>
+        <Container>
+            <Content contentContainerStyle={{ flex : 0, justifyContent: 'center' }}>
+                <View style={styles.body}>
+                    <Image  source={require('../images/bg.jpg')} style={styles.bgImage}>
+                    <Text style={styles.titleStyle}>BooksUp!</Text>
+                    <Image
+                        source={require('../images/userIcon.png')}
+                        style={styles.userImage}
+                    />
+                    <Text ref={'loadUserTest'} style={styles.userName}>{this.props.name}</Text>
+                    </Image>
+                    <View style={styles.profileView}>
+                        <Button block style={{ backgroundColor: '#808080' } } textStyle={{color: '#fff'}} onPress={this.loadmyinterests}> My Interests </Button>
+                        <Text> </Text>
+                        <Button block style={{ backgroundColor: '#808080' } } textStyle={{color: '#fff'}} onPress={this.myUploads.bind(this)}> My Uploads </Button>
+                        <Text> </Text>
+                        <Button block style={{ backgroundColor: '#808080' } } textStyle={{color: '#fff'}}
+                            onPress={
+                                () => {
+                                this.props.navigator.push({
+                                    rt : "ScanCamera",
+                                    sceneConfig: Navigator.SceneConfigs.FadeAndroid
+                                })
+                            }}> Add Book </Button>
+                    </View>
+                </View>
+            </Content>
+        </Container>
     );
     this.filteredList = []
     this.state.books.forEach((book) => this.setfilteredlist(book));
@@ -191,6 +199,14 @@ class Home extends Component {
               {this.filteredList.map((item) =>
               this.eachBook(item, this)
             )}
+            <Fab active={this.state.fabactive}
+                containerStyle={{ marginRight: 10 }}
+                style={{ backgroundColor: '#5067FF' }}
+                position="bottomRight"
+                onPress={ () => this.scan() }
+            >
+            <Icon name='ios-add'/>
+            </Fab>
             </List>
           </Content>
         </Container>

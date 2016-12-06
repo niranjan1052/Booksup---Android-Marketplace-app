@@ -153,6 +153,44 @@ const styles = StyleSheet.create({
   },
   footerActionText: {
     fontWeight: "600"
+  },
+  body: {
+    backgroundColor: 'white',
+    borderBottomWidth: 2,
+    borderStyle: 'solid',
+    borderBottomColor: 'black',
+  },
+  bgImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    width: 310,
+    height: windowHeight * 0.6,
+    backgroundColor: 'transparent',
+    resizeMode: 'stretch'
+  },
+  titleStyle: {
+    fontSize: 50,
+    marginBottom: 30,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  userImage: {
+    borderRadius: 50,
+    marginBottom: 20
+  },
+  userName: {
+    color: 'white',
+    marginBottom: 50,
+    fontWeight: 'bold'
+  },
+  profileView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 75,
+    borderBottomColor: 'black',
+    marginBottom: 100,
+    backgroundColor: '#F0FFF0'
   }
 })
 

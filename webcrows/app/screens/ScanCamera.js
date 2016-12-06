@@ -7,7 +7,8 @@ import {
   TouchableHighlight,
   View,
   Alert,
-  Navigator
+  Navigator,
+  BackAndroid
 } from 'react-native';
 import BarcodeScanner from 'react-native-barcodescanner';
 

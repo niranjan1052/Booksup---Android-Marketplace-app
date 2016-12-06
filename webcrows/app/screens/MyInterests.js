@@ -47,7 +47,7 @@ export default class MyInterests extends Component {
               self.setState({ interestlist : responseJson.interestedbooks })
               console.log("after set state ", this.state.interestlist);
               } else {
-                  Alert.alert("fetch error")
+                  ;
               }
         })
   }
