@@ -75,7 +75,7 @@ export default class webcrows extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{rt: "Profile"}}
+        initialRoute={{rt: "Login"}}
         ref="appNavigator"
         style={styles.navStyles}
         renderScene={ this._renderScene }
