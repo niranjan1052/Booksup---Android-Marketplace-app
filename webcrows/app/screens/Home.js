@@ -9,11 +9,11 @@ import {
   Navigator,
 } from 'react-native';
 
+import Drawer from 'react-native-drawer'
+
 import ApiHandler from '../services/ApiHandler'
 import ViewContainer from '../components/ViewContainer/ViewContainer'
-import StatusBarBackground from '../components/StatusBarBackground/StatusBarBackground'
-import FitImage from 'react-native-fit-image';
-import navigationView from './Drawer'
+import Profile from './Profile'
 
 import {
   Container,
@@ -26,21 +26,83 @@ import {
   Header,
   Title,
   InputGroup,
-  Input
+  Input,
+  Fab
 } from 'native-base'
 
 import styles from '../styles/appStyles'
 
+const drawerStyles = {
+  drawer: {
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 0,
+  },
+  body: {
+    backgroundColor: 'white',
+    borderBottomWidth: 2,
+    borderStyle: 'solid',
+    borderBottomColor: 'black',
+  },
+  bgImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    width: null,
+    height: null,
+    backgroundColor: 'transparent',
+    resizeMode: 'stretch'
+  },
+  profileView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 125,
+    borderBottomColor: 'black',
+    marginBottom: 135
+  },
+  userImage: {
+    borderRadius: 50,
+  },
+  userName: {
+    color: 'black',
+    marginBottom: 50,
+    fontWeight: 'bold'
+  },
+  titleStyle: {
+    fontSize: 50,
+    marginBottom: 30,
+    fontWeight: 'bold'
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+}
+
 class Home extends Component {
   constructor(props) {
     super (props)
-    // this._navigateToThisEvent = this._navigateToThisEvent.bind(this)
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2 })
     this.state = {
-      books: []
+      books: [],
+      fabactive: true,
+        drawerType: 'overlay',
+        openDrawerOffset:100,
+        closedDrawerOffset:0,
+        panOpenMask: .1,
+        panCloseMask: .9,
+        relativeDrag: false,
+        panThreshold: .25,
+        tweenHandlerOn: false,
+        tweenDuration: 350,
+        tweenEasing: 'linear',
+        disabled: false,
+        tweenHandlerPreset: null,
+        acceptDoubleTap: false,
+        acceptTap: false,
+        acceptPan: true,
+        tapToClose: false,
+        negotiatePan: false
     }
-    this.onPressButton = this.onPressButton.bind(this);
-    this._profile = this._profile.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +114,6 @@ class Home extends Component {
       return response.json()
     .then (function(json){
         if (json && json.flag==1 && json.allposts) {
-          // self.setState({ crowsDS : self.state.crowsDS.cloneWithRows(json.allposts) })
           self.setState({ books : json.allposts })
         }
       });
@@ -68,13 +129,6 @@ class Home extends Component {
     })
   }
 
-  _profile() {
-    this.refs['DRAWER_REF'].navigator.push({
-      rt: "Profile",
-      sceneConfig: Navigator.SceneConfigs.FloatFromBottom
-    });
-  }
-
   eachBook (book, self) {
     //this.navigateToThisEvent.bind(this)
     return (<ListItem key={book}>
@@ -88,22 +142,42 @@ class Home extends Component {
       )
   }
 
-  onPressButton() {
-    this.refs['DRAWER_REF'].openDrawer();
+  openProfile = () => {
+    this._drawer.open()
+  };
+
+  fabPressed = () => {
+    console.log('fab pressed..')
   }
 
   render() {
-    console.log('Rendering')
+    console.log('Rendering..')
+
     return (
-      <DrawerLayoutAndroid
-        drawerWidth={300}
-        drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => navigationView}
-        ref={'DRAWER_REF'}>
+      <Drawer
+        ref={(ref) => this._drawer = ref}
+            animation={this.state.animation}
+            openDrawerOffset={this.state.openDrawerOffset}
+            closedDrawerOffset={this.state.closedDrawerOffset}
+            panOpenMask={this.state.panOpenMask}
+            panCloseMask={this.state.panCloseMask}
+            relativeDrag={this.state.relativeDrag}
+            panThreshold={this.state.panThreshold}
+            content={<Profile name={this.props.name} styles={drawerStyles}/>}
+            styles={drawerStyles}
+            disabled={this.state.disabled}
+            acceptDoubleTap={this.state.acceptDoubleTap}
+            acceptTap={this.state.acceptTap}
+            acceptPan={this.state.acceptPan}
+            tapToClose={this.state.tapToClose}
+            negotiatePan={this.state.negotiatePan}
+            changeVal={this.state.changeVal}
+            side={'left'}
+      >
         <Container>
           <Header searchBar rounded>
               <InputGroup>
-                <Button transparent onPress={this.onPressButton}>
+                <Button transparent onPress={this.openProfile}>
                   <Icon name="ios-menu" />
                 </Button>
                 <Icon name="ios-search" />
@@ -116,14 +190,21 @@ class Home extends Component {
 
           <Content>
             <List>
-
               {this.state.books.map((item) =>
               this.eachBook(item, this)
             )}
             </List>
+            <Fab active={this.state.fabactive}
+                containerStyle={{ marginRight: 10 }}
+                style={{ backgroundColor: '#5067FF' }}
+                position="bottomRight"
+                onPress={ () => this.fabPressed }
+            >
+            <Icon name='ios-arrow-forward' />
+            </Fab>
           </Content>
         </Container>
-      </DrawerLayoutAndroid>
+      </Drawer>
     );
   }
 }

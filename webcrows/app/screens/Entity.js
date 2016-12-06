@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 export default class Entity extends Component {
 	render() {
 		return (
-			    <ViewContainer name={this.props.name}>
+			    <View>
 			        <StatusBarBackground style={{backgroundColor: 'mistyrose'}}/>
 			        <TouchableOpacity onPress={ () => this.props.navigator.pop() }>
 			        	<Icon name="circle" style={styles.closeEntity} />
@@ -28,7 +28,7 @@ export default class Entity extends Component {
 			          	source={{uri: this.props.element.imageLinks.thumbnail}}
 			          	style={styles.singlePic}
 			          />
-			    </ViewContainer>
+			    </View>
 			)
 	}
 }

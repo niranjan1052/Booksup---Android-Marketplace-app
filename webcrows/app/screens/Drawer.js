@@ -10,12 +10,12 @@ import {
   Button
 } from 'react-native';
 
-
+import Profile from './Profile'
 
 var navigationView = (
   <View style={{flex: 1, backgroundColor: '#fff'}}>
     <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
-    <Button title="Profile"  onPress={()=>_profile()}>
+    
     </Button>
   </View>
 );
