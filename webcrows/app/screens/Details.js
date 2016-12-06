@@ -23,7 +23,7 @@ class Details extends Component {
       pictaken: false,
     }
     this.price = ''
-    this.imgurl = ''
+    this.imgurl = 'null'
   }
   onPressHandler(){
     console.log('Button pressed');
