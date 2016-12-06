@@ -48,6 +48,7 @@ class ScanCamera extends Component{
     this.setState({showCamera: false})
     this.props.navigator.push({
       rt: 'ManualISBN',
+      name : this.props.name
     })
   }
   render(){

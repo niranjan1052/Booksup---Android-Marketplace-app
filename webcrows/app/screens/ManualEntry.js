@@ -28,7 +28,8 @@ class ManualEntry extends Component {
             console.log('and I got this as response from google: ', responseData)
             this.props.navigator.push({
               rt: 'Details',
-              bookdetails: responseData
+              bookdetails: responseData,
+              name : this.props.name
             })
         })
         .done();
