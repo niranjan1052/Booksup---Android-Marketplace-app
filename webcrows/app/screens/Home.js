@@ -79,9 +79,11 @@ class Home extends Component {
           <TouchableOpacity onPress={()=>self._navigateToThisEvent(book)}>
             <Thumbnail square size={100} source={{uri: book.imageLinks.thumbnail}} />
           </TouchableOpacity>
+          <View style={{flexDirection:'column'}}>
             <Text> {book.title}</Text>
             <Text> {book.author} </Text>
             <Text> {`$ `} {book.askingPrice} </Text>
+          </View>
           </ListItem>
       )
   }
