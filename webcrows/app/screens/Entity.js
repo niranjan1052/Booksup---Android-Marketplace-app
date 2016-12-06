@@ -87,7 +87,7 @@ console.log("user "+user+" shown interest in book "+ book.title );
 
 	render() {
     var localURL = this.props.element.imgurUrl;
-    if (localURL=="")
+    if (localURL=="null")
       localURL=this.props.element.imageLinks.thumbnail;
     var localDesc = this.props.element.description.substring(0, Math.min(350, this.props.element.description.length)) + '...';
 
