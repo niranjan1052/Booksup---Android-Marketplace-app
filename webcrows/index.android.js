@@ -14,9 +14,6 @@ import ScanCamera from './app/screens/ScanCamera'
 import Details from './app/screens/Details'
 import ManualEntry from './app/screens/ManualEntry'
 import AddCamera from './app/screens/AddCamera'
-import MyInterests from './app/screens/MyInterests'
-import MyUploads from './app/screens/MyUploads'
-
 
 export default class webcrows extends Component {
 
@@ -48,38 +45,24 @@ export default class webcrows extends Component {
             />
           )
 
-    case "MyInterests" :
-       return(
-         <MyInterests
-         {...globalNavProps}
-         key = {route.rt}
-         name={route.name}
-         />
-       )
-
       case "Temp":
         return (
             <Text>{`a temp route..`}</Text>
           )
       case 'Details':
         return (
-          <Details {...globalNavProps} bookdetails={route.bookdetails}/>
+          <Details {...globalNavProps} bookdetails={route.bookdetails} name ={route.name}/>
         )
       case 'ManualISBN':
-        return (<ManualEntry {...globalNavProps}/>)
+        return (<ManualEntry {...globalNavProps} name={route.name}/>)
 
       case 'ScanCamera':
         return(
-          <ScanCamera {...globalNavProps}/>
-        )
-
-      case 'MyUploads':
-        return(
-          <MyUploads {...globalNavProps} name={route.user} />
+          <ScanCamera {...globalNavProps} name={route.name}/>
         )
       case 'AddPic':
         return(
-          <AddCamera {...globalNavProps} route={route}/>
+          <AddCamera {...globalNavProps} route={route} name={route.name}/>
         )
 
       default:

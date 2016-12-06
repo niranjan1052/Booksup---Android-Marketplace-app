@@ -35,10 +35,14 @@ class ScanCamera extends Component{
 
             this.props.navigator.push({
               rt: 'Details',
-              bookdetails: responseData
+              bookdetails: responseData,
+              name : this.props.name
             })
         })
         .done();
+
+
+
   }
   manualEntry(){
     this.setState({showCamera: false})

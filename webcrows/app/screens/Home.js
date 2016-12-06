@@ -133,7 +133,6 @@ class Home extends Component {
   }
   render() {
     console.log('Rendering')
-
     var navigationView = (
       <View style={{flex: 1, backgroundColor: '#fff'}}>
         <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
@@ -141,7 +140,8 @@ class Home extends Component {
           onPress={() => {
             this.props.navigator.push({
               rt : "ScanCamera",
-              sceneConfig: Navigator.SceneConfigs.FadeAndroid
+              sceneConfig: Navigator.SceneConfigs.FadeAndroid,
+              name : this.props.name
             })
           }}
           title="Add a new Book"
@@ -159,7 +159,6 @@ class Home extends Component {
         </Button>
       </View>
     );
-
     this.filteredList = []
     this.state.books.forEach((book) => this.setfilteredlist(book));
     return (

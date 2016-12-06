@@ -37,7 +37,7 @@ class Details extends Component {
       body: JSON.stringify({
         bookdetails : this.props.bookdetails.items[0],
         askingPrice: this.price,
-        userName: "John",
+        userName: this.props.name,
         imgurUrl : this.imgurl,
         sellerNotes: this.state.text
       })
@@ -49,10 +49,13 @@ class Details extends Component {
       .done();
 
       Alert.alert(
-        'Inserted into DB',
-        'Can renavigate now'
+        'Upload Successful',
+        'Book has been put up for sale'
       )
-      this.goback()
+      this.props.navigator.push({
+        rt: "Home",
+        name: this.props.name
+      })
 
   }
   goback(){
