@@ -9,7 +9,8 @@ import {
   Alert,
   Navigator,
   Button,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 import BarcodeScanner from 'react-native-barcodescanner';
 
@@ -37,7 +38,8 @@ class Details extends Component {
         bookdetails : this.props.bookdetails.items[0],
         askingPrice: this.price,
         userName: "John",
-        imgurUrl : this.imgurl
+        imgurUrl : this.imgurl,
+        sellerNotes: this.state.text
       })
     })
       .then((response) => response.json())
@@ -86,11 +88,14 @@ class Details extends Component {
             <Text> {this.props.bookdetails.items[0].volumeInfo.title} </Text>
             <Text>{this.props.bookdetails.items[0].volumeInfo.authors}</Text>
             <Text> {this.props.bookdetails.items[0].volumeInfo.industryIdentifiers[0].type} : {this.props.bookdetails.items[0].volumeInfo.industryIdentifiers[0].identifier} </Text>
-            <TextInput
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
-                placeholder={'Extra Information'}
-            />
+              <TextInput
+                  style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
+                  placeholder={'Extra Information'}
+                  multiline = {true}
+                  numberOfLines = {4}
+              />
             <Text> Selling Pice: </Text>
             <TextInput
               onChangeText = {(price) => this.price=price}
@@ -102,7 +107,13 @@ class Details extends Component {
                 color="#841584"
               />
             :
+              <View style={styles.container}>
               <Text>Image URL: {this.imgurl}</Text>
+              <Image
+                style={{width: 100, height: 100}}
+                source={{uri: this.imgurl}}
+              />
+              </View>
             }
           </View>
         }
@@ -126,6 +137,12 @@ class Details extends Component {
 const styles = StyleSheet.create({
   sp: {
     padding : 10
+  },
+  container: {
+    alignItems: 'center'
+  },
+  textbox: {
+    alignSelf : 'flex-start',
   }
 })
 

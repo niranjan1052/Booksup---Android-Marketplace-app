@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import Camera from 'react-native-camera';
 var ReadImageData = require('NativeModules').ReadImageData;
 
@@ -17,7 +17,8 @@ export default class AddCamera extends React.Component {
         orientation: Camera.constants.Orientation.auto,
         flashMode: Camera.constants.FlashMode.auto,
       },
-      isRecording: false
+      isRecording: false,
+      pictaken: false
     };
 
     this.takePicture = this.takePicture.bind(this);
@@ -36,6 +37,9 @@ export default class AddCamera extends React.Component {
       this.camera.capture()
         .then(function(data)
           {
+            self.setState({
+              pictaken : true
+            })
             console.log("hello Ambuj");
             console.log('The image captured is: ', data);
             console.log('I am not using the above image.');
@@ -153,82 +157,89 @@ export default class AddCamera extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <StatusBar
-          animated
-          hidden
-        />
-        <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
-          style={styles.preview}
-          aspect={this.state.camera.aspect}
-          captureTarget={this.state.camera.captureTarget}
-          type={this.state.camera.type}
-          flashMode={this.state.camera.flashMode}
-          defaultTouchToFocus
-          mirrorImage={false}
-        />
-        <View style={[styles.overlay, styles.topOverlay]}>
-          <TouchableOpacity
-            style={styles.typeButton}
-            onPress={this.switchType}
-          >
-            <Image
-              source={this.typeIcon}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.flashButton}
-            onPress={this.switchFlash}
-          >
-            <Image
-              source={this.flashIcon}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.overlay, styles.bottomOverlay]}>
-          {
-            !this.state.isRecording
-            &&
+    if(!this.state.pictaken) {
+      return (
+        <View style={styles.container}>
+          <StatusBar
+            animated
+            hidden
+          />
+          <Camera
+            ref={(cam) => {
+              this.camera = cam;
+            }}
+            style={styles.preview}
+            aspect={this.state.camera.aspect}
+            captureTarget={this.state.camera.captureTarget}
+            type={this.state.camera.type}
+            flashMode={this.state.camera.flashMode}
+            defaultTouchToFocus
+            mirrorImage={false}
+          />
+          <View style={[styles.overlay, styles.topOverlay]}>
             <TouchableOpacity
-                style={styles.captureButton}
-                onPress={this.takePicture}
+              style={styles.typeButton}
+              onPress={this.switchType}
             >
               <Image
-                  source={require('../assets/ic_photo_camera_36pt.png')}
+                source={this.typeIcon}
               />
             </TouchableOpacity>
-            ||
-            null
-          }
-          <View style={styles.buttonsSpace} />
-          {
+            <TouchableOpacity
+              style={styles.flashButton}
+              onPress={this.switchFlash}
+            >
+              <Image
+                source={this.flashIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.overlay, styles.bottomOverlay]}>
+            {
               !this.state.isRecording
               &&
               <TouchableOpacity
                   style={styles.captureButton}
-                  onPress={this.startRecording}
+                  onPress={this.takePicture}
               >
                 <Image
-                    source={require('../assets/ic_videocam_36pt.png')}
+                    source={require('../assets/ic_photo_camera_36pt.png')}
                 />
               </TouchableOpacity>
               ||
-              <TouchableOpacity
-                  style={styles.captureButton}
-                  onPress={this.stopRecording}
-              >
-                <Image
-                    source={require('../assets/ic_stop_36pt.png')}
-                />
-              </TouchableOpacity>
-          }
+              null
+            }
+            <View style={styles.buttonsSpace} />
+            {
+                !this.state.isRecording
+                &&
+                <TouchableOpacity
+                    style={styles.captureButton}
+                    onPress={this.startRecording}
+                >
+                  <Image
+                      source={require('../assets/ic_videocam_36pt.png')}
+                  />
+                </TouchableOpacity>
+                ||
+                <TouchableOpacity
+                    style={styles.captureButton}
+                    onPress={this.stopRecording}
+                >
+                  <Image
+                      source={require('../assets/ic_stop_36pt.png')}
+                  />
+                </TouchableOpacity>
+            }
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
+    else {
+      return (
+        <Text> Please Wait.. </Text>
+      )
+    }
   }
 }
 
