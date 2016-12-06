@@ -84,7 +84,7 @@ eachBook (book, self) {
                      <Button transparent onPress={ () => this.props.navigator.pop() }>
                          <Icon name='ios-arrow-back' />
                        </Button>
-                     <Title>List of Books i liked</Title>
+                     <Title>My Interests</Title>
                  </Header>
 
                      <Card style={{margin:3}}>

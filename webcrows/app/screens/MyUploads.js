@@ -15,7 +15,9 @@ class MyUploads extends Component {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2 })
     this.state = {
       books: [],
+      filterText: ''
     }
+    this.deletePost = this.deletePost.bind(this);
   }
 
   componentDidMount() {
@@ -36,17 +38,64 @@ class MyUploads extends Component {
     });
   }
 
+  deletePost(post, user)
+  {
+    console.log("postID ",post);
+    console.log("user ",user);
+    var books1 = this.state.books.filter(book => book.postId !== post);
+    this.setState({books: books1});
+    fetch('https://module4server.herokuapp.com/deletepost', {
+       method: 'POST',
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         postId: post
+       })
+     })
+     .then( (response) => response.json() )
+     .then((responseJson) => {
+           interestflag = responseJson.flag;
+         if (interestflag==1) {
+             console.log('deleted successfully ', post)
+
+               } else {
+                   Alert.alert("delete operation failed")
+               }
+         });
+  }
+
+
   eachBook (book, self) {
     console.log('Inside MyUploads Component - eachBook function');
     return (<CardItem key={book.postId}>
+              <Thumbnail square size={100} source={{uri: book.imageLinks.smallThumbnail}} />
               <Text> {book.title}</Text>
               <Text> {book.author} </Text>
               <Text> {`$ `} {book.askingPrice} </Text>
+              <View style={{flexDirection:'row'}}>
+                <Button danger onPress={() => this.deletePost(book.postId,this.props.name)} >
+                  <Icon iconRight name='ios-close-circle' />
+                </Button>
+                <Text> </Text>
+                <Button rounded info> Edit </Button>
+            </View>
           </CardItem>
       )
   }
 
   render() {
+    var filteredBooks = [];
+    this.state.books.forEach((book) => {
+      var bookvar = "" + book.postId
+      if (bookvar.indexOf(this.state.filterText) === -1) {
+        return;
+      }
+      else {
+        filteredBooks.push(book);
+      }
+    });
     console.log('Inside MyUploads Component - Render function');
     return (
       <Container>
@@ -54,10 +103,11 @@ class MyUploads extends Component {
           <Header>
               <Button transparent onPress={ () => this.props.navigator.pop() }>
                   <Icon name='ios-arrow-back' />
-                </Button>
+              </Button>
+              <Title>My Uploads</Title>
           </Header>
           <Card>
-              {this.state.books.map((item) => this.eachBook(item, this))}
+              {filteredBooks.map((item) => this.eachBook(item, this))}
           </Card>
         </Content>
       </Container>

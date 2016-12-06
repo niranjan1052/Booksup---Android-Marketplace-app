@@ -24,7 +24,7 @@ export default class Entity extends Component {
       interested:0
     }
    this.handleShowInterest= this.handleShowInterest.bind(this);
-   
+
   }
 
 
@@ -107,11 +107,12 @@ console.log("user "+user+" shown interest in book "+ book.title );
                               <Text> {this.props.element.title } </Text>
                               <Text> Publisher: {this.props.element.publisher } </Text>
                               <Text> ISBN: {this.props.element.isbn } </Text>
-                              <Text> current user/buyer : { this.props.name} </Text>
                             <Image source={{uri: this.props.element.imageLinks.thumbnail}} style={{margin:20, alignSelf:'center',width:200,height:200}} />
                             <Text></Text>
 
                              <Text>Price: ${this.props.element.askingPrice}</Text>
+                              <Text></Text>
+                              <Text>Seller notes: {this.props.element.sellerNotes }</Text>
                               <Text></Text>
                                <Text>Description</Text>
                             <Text style={{borderWidth :2}}>
@@ -131,6 +132,9 @@ console.log("user "+user+" shown interest in book "+ book.title );
                               Already Shown Interest!
                             </Button>
                            }
+                           <Text></Text>
+                           <Image source={{uri: this.props.element.imgurUrl}} style={{margin:20, alignSelf:'center',width:200,height:200}} />
+                           <Text></Text>
 
  </View>
                 </Content>
