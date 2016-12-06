@@ -99,7 +99,8 @@ class Home extends Component {
     console.log('Pressed')
     this.props.navigator.push({
       rt : "ScanCamera",
-      sceneConfig: Navigator.SceneConfigs.FadeAndroid
+      sceneConfig: Navigator.SceneConfigs.FadeAndroid,
+      name : this.props.name
     })
   }
 
@@ -133,8 +134,7 @@ class Home extends Component {
     console.log('loading my interests');
     this.props.navigator.push({
       rt : "MyInterests",
-      name: this.props.name,
-
+      name: this.props.name
     })
   }
   render() {
@@ -161,7 +161,8 @@ class Home extends Component {
                                 () => {
                                 this.props.navigator.push({
                                     rt : "ScanCamera",
-                                    sceneConfig: Navigator.SceneConfigs.FadeAndroid
+                                    sceneConfig: Navigator.SceneConfigs.FadeAndroid,
+                                    name: this.props.name
                                 })
                             }}> Add Book </Button>
                     </View>
