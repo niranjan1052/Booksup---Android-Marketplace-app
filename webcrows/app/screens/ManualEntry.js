@@ -19,6 +19,7 @@ class ManualEntry extends Component {
     this.isbn = '';
   }
   onPressHandler(){
+    console.log('inside onPressHandler')
     var apiquery = "https://www.googleapis.com/books/v1/volumes?q="+this.isbn
 
     fetch(apiquery, {method: "GET"})
@@ -26,7 +27,7 @@ class ManualEntry extends Component {
         .then((responseData) => {
 
             this.props.navigator.push({
-              id: 'Details',
+              rt: 'Details',
               bookdetails: responseData
             })
         })
