@@ -147,7 +147,7 @@ class Home extends Component {
           <Button rounded style={{alignSelf:'center'} } onPress={() => this.loadmyinterests()} >
             Load my Interests
           </Button>
-        </Button>
+          <Text></Text>
         <Button onPress={this.myUploads.bind(this)} title="My Uploads" color="#841584">
             My Uploads
         </Button>
