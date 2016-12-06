@@ -137,7 +137,12 @@ class Home extends Component {
       <View style={{flex: 1, backgroundColor: '#fff'}}>
         <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I am the Drawer!</Text>
         <Button
-          onPress={this.scan.bind(this)}
+          onPress={() => {
+            this.props.navigator.push({
+              rt : "ScanCamera",
+              sceneConfig: Navigator.SceneConfigs.FadeAndroid
+            })
+          }}
           title="Add a new Book"
           color="#841584"
           >
