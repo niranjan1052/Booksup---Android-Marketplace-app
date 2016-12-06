@@ -42,7 +42,8 @@ class Home extends Component {
     }
     this.onPressButton = this.onPressButton.bind(this);
     this.setfilteredlist = this.setfilteredlist.bind(this);
-    this.searching = this.searching.bind(this)
+    this.searching = this.searching.bind(this);
+    this.loadmyinterests = this.loadmyinterests.bind(this);
   }
 
   componentDidMount() {
@@ -96,6 +97,14 @@ class Home extends Component {
     })
   }
 
+  myUploads() {
+    console.log('Pressed')
+    this.props.navigator.push({
+      rt : "MyUploads",
+      user: this.props.name
+    })
+  }
+
   searching(text) {
     this.setState({
         filterText: text,
@@ -113,6 +122,15 @@ class Home extends Component {
 
   }
 
+
+  loadmyinterests(){
+    console.log('loading my interests');
+    this.props.navigator.push({
+      rt : "MyInterests",
+      name: this.props.name,
+
+    })
+  }
   render() {
     console.log('Rendering')
     var navigationView = (
@@ -125,6 +143,14 @@ class Home extends Component {
           >
           Upload new book
           </Button>
+          <Text></Text>
+          <Button rounded style={{alignSelf:'center'} } onPress={() => this.loadmyinterests()} >
+            Load my Interests
+          </Button>
+          <Text></Text>
+        <Button onPress={this.myUploads.bind(this)} title="My Uploads" color="#841584">
+            My Uploads
+        </Button>
       </View>
     );
     this.filteredList = []

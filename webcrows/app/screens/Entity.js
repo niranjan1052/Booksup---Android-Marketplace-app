@@ -23,8 +23,35 @@ export default class Entity extends Component {
       bookdetail: this.props.element,
       interested:0
     }
-   this.handleShowInterest = this.handleShowInterest.bind(this);
+   this.handleShowInterest= this.handleShowInterest.bind(this);
+   
   }
+
+
+
+/*  componentWillMount() {
+    console.log("componentWillMount entered for post ",this.props.element.postId );
+    let self = this
+    let url = 'https://module4server.herokuapp.com/bookdetails/'+this.props.element.postId ;
+    console.log('url ', url);
+    fetch(url, {
+      method: 'GET'
+    })
+    .then( (response) => response.json() )
+    .then((responseJson) => {
+          flag1 = responseJson.flag;
+          console.log('book details fetched with flag  ', flag1)
+        if (flag1==1) {
+            // console.log('book details are ', responseJson.bookdetails );
+              self.setState({ bookdetail : responseJson.bookdetails })
+              console.log("after set state ", this.state.bookdetail);
+              } else {
+                  Alert.alert("fetch error")
+              }
+        })
+  }
+*/
+
 
 
 handleShowInterest(book,user){
@@ -59,6 +86,10 @@ console.log("user "+user+" shown interest in book "+ book.title );
 }
 
 	render() {
+
+  //  var interestedU = [];
+    // console.log('book detail inside render : ', this.state.bookdetail.interestedUsers)
+    interestedU = this.props.element.interestedUsers;
 		return (
       <Container>
                 <Content>
@@ -69,7 +100,6 @@ console.log("user "+user+" shown interest in book "+ book.title );
                         <Icon name='ios-arrow-back' />
                       </Button>
                     <Title>Book Details</Title>
-
 
                 </Header>
                         <View style={{ flex: 1 }}>
@@ -87,8 +117,10 @@ console.log("user "+user+" shown interest in book "+ book.title );
                             <Text style={{borderWidth :2}}>
                              {this.props.element.description}
                             </Text>
+
+
                             <Text></Text>
-                          { ((this.props.element.interestedUsers.indexOf(this.props.name)==-1) && this.state.interested == 0 ) ?
+                          { ((interestedU.indexOf(this.props.name)==-1) && this.state.interested == 0 ) ?
                             <Button rounded style={{alignSelf:'center'} } onPress={() => this.handleShowInterest(this.props.element,this.props.name)} >
 
                               Interested to Buy
@@ -99,8 +131,6 @@ console.log("user "+user+" shown interest in book "+ book.title );
                               Already Shown Interest!
                             </Button>
                            }
-
-
 
  </View>
                 </Content>
