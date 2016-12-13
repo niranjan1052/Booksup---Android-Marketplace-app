@@ -143,7 +143,7 @@ class Home extends Component {
         <Container>
             <Content contentContainerStyle={{ flex : 0, justifyContent: 'center' }}>
                 <View style={styles.body}>
-                    <Image  source={require('../images/bg.jpg')} style={styles.bgImage}>
+                    <Image  source={require('../images/dam.jpg')} style={styles.bgImage}>
                     <Text style={styles.titleStyle}>BooksUp!</Text>
                     <Image
                         source={require('../images/userIcon.png')}
@@ -152,11 +152,11 @@ class Home extends Component {
                     <Text ref={'loadUserTest'} style={styles.userName}>{this.props.name}</Text>
                     </Image>
                     <View style={styles.profileView}>
-                        <Button block style={{ backgroundColor: 'darkblue' } } textStyle={{color: '#fff'}} onPress={this.loadmyinterests}> My Interests </Button>
+                        <Button block style={{ backgroundColor: '#7C09B2' } } textStyle={{color: '#fff'}} onPress={this.loadmyinterests}> My Interests </Button>
                         <Text> </Text>
-                        <Button block style={{ backgroundColor: 'darkblue' } } textStyle={{color: '#fff'}} onPress={this.myUploads.bind(this)}> My Uploads </Button>
+                        <Button block style={{ backgroundColor: '#7C09B2' } } textStyle={{color: '#fff'}} onPress={this.myUploads.bind(this)}> My Uploads </Button>
                         <Text> </Text>
-                        <Button block style={{ backgroundColor: 'darkblue' } } textStyle={{color: '#fff'}}
+                        <Button block style={{ backgroundColor: '#7C09B2' } } textStyle={{color: '#fff'}}
                             onPress={
                                 () => {
                                 this.props.navigator.push({

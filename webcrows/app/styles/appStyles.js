@@ -21,7 +21,7 @@ const Colors = {
 
 const styles = StyleSheet.create({
   navStyles: {
-  	backgroundColor: 'lightgrey'
+  	backgroundColor: '#FBEEE6'
   },
   backgroundImage: {
 		flex: 1,
@@ -172,23 +172,24 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     fontSize: 50,
+    fontFamily: 'typographica',
     marginBottom: 30,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'darkblue'
   },
   userImage: {
     borderRadius: 50,
     marginBottom: 20
   },
   userName: {
-    color: 'white',
+    color: 'darkblue',
     marginBottom: 50,
     fontWeight: 'bold'
   },
   profileView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 75,
+    marginTop: 45,
     borderBottomColor: 'black',
     marginBottom: 100,
     backgroundColor: '#F0FFF0'
