@@ -71,32 +71,32 @@ Also, we faced a scenario where we had to pass a scene itself as a prop to the n
 ## Screenshots ##
 
 ###### Login 
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg =100x50 "Login")
-<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg" alt="Drawing" width="200" height="400"/>
+
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg" alt="Login" width="250" height="400"/>
 
 ###### Explore 
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/explore.jpeg "Explore")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/explore.jpeg" alt="Login" width="250" height="400"/>
 
 ###### Drawer
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/drawer.jpeg "Drawer")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/drawer.jpeg" alt="Login" width="250" height="400"/>
 
 ###### My Uploads 
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/my_uploads.jpeg "My Uploads")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/my_uploads.jpeg" alt="My Uploads" width="250" height="400"/>
 
 ###### My Interests
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/my_interests.jpeg "My Interests")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/my_interests.jpeg" alt="My Interests" width="250" height="400"/>
 
 ###### Book details
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/book_details.jpeg "Book details")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/book_details.jpeg" alt="Book details" width="250" height="400"/>
 
 ###### Search feature 
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/search_feature.jpeg "Search")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/search_feature.jpeg" alt="Search" width="250" height="400"/>
 
 ###### Barcode scanner
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/barcode_s.jpeg "Barcode scanner")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/barcode_s.jpeg" alt="Barcode Scanner" width="250" height="400"/>
 
 ###### Image upload
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/img_upload.jpeg "Image upload")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/img_upload.jpeg" alt="Login" width="250" height="400"/>
 
 ## Intro ##
 You've conquered static sites, server-side programming, and client-side
