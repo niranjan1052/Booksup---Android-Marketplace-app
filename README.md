@@ -42,8 +42,6 @@ We wanted to develop an android application which showcases a wide gamut of feat
    - All other details of the book are fetched from the following google API: https://www.googleapis.com/books/v1/volumes?q=<ISBN>
    
 ###### Multiple user support: 
-
-   - Each user can play the role of both buyer and seller
    - Each user can upload new books 
    - Each user can add books posted by other users to his interest list 
    - User has his own personalized upload list and interest list 
