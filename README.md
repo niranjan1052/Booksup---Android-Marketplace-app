@@ -96,6 +96,9 @@ Also, we faced a scenario where we had to pass a scene itself as a prop to the n
 ###### Image upload
 <img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/img_upload.jpeg" alt="Login" width="250" height="400"/>
 
+###### Auto populate book details
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/auto_populate_book_details.jpeg" alt="Login" width="250" height="400"/>
+
 ## Intro ##
 You've conquered static sites, server-side programming, and client-side
 programming. Now the only thing standing between you and total web domination
