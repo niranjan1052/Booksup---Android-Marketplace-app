@@ -67,10 +67,35 @@ For styling, we made use of NativeBase and also custom components as deemed nece
 10 APIs have been implemented on server and these APIs are responsible for communication between client and database. 
 
 Also, we faced a scenario where we had to pass a scene itself as a prop to the next scene so that data can be passed back from the new scene to the old scene when the new scene is popped from navigation stack. Had fun implementing this feature. 
- 
 
 ## Screenshots ##
-![alt text](https://github.com/umn-5117-f16/module-3-group-project-webcrows/blob/master/websiteOniPhone7.jpg "Website on iPhone6")
+
+###### Login 
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg "Login")
+
+###### Explore 
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/explore.jpeg "Explore")
+
+###### Drawer
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/drawer.jpeg "Drawer")
+
+###### My Uploads 
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/my_uploads.jpeg "My Uploads")
+
+###### My Interests
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/my_interests.jpeg "My Interests")
+
+###### Book details
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/book_details.jpeg "Book details")
+
+###### Search feature 
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/search_feature.jpeg "Search")
+
+###### Barcode scanner
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/barcode_s.jpeg "Barcode scanner")
+
+###### Image upload
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/img_upload.jpeg "Image upload")
 
 ## Intro ##
 You've conquered static sites, server-side programming, and client-side
