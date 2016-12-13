@@ -11,7 +11,7 @@ __Team members:__
 - nayan003@umn.edu
 - rich1044@umn.edu
 
-__Heroku URL (for server code):__ https://modthreewc.herokuapp.com/
+__Heroku URL (server is hosted on heroku):__ https://module4server.herokuapp.com
 
 __Argument of ambition:__
 
@@ -71,7 +71,7 @@ Also, we faced a scenario where we had to pass a scene itself as a prop to the n
 ## Screenshots ##
 
 ###### Login 
-![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg "Login")
+![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg =100x50 "Login")
 
 ###### Explore 
 ![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/explore.jpeg "Explore")
