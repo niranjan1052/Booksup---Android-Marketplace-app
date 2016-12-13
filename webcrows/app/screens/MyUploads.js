@@ -78,7 +78,7 @@ class MyUploads extends Component {
                 <Button danger onPress={() => this.deletePost(book.postId,this.props.name)} >
                   <Icon iconRight name='ios-close-circle' />
                 </Button>
-                <Text> </Text>
+                <Text>                                                   </Text>
                 <Button rounded info> Edit </Button>
             </View>
           </CardItem>
