@@ -72,6 +72,7 @@ Also, we faced a scenario where we had to pass a scene itself as a prop to the n
 
 ###### Login 
 ![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg =100x50 "Login")
+<img src="https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/login.jpeg" alt="Drawing" style="width: 200px; height: 400px"/>
 
 ###### Explore 
 ![alt text](https://github.com/umn-5117-f16/module-4-group-project-webcrows/blob/master/explore.jpeg "Explore")
